@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import asset1 from "../../assets/asset 0.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown } from "react-icons/fa";
 import {
   faChevronDown,
   faBars,
@@ -116,52 +116,52 @@ export default function Header() {
                         </Link>
                       </li>
                       <li className="relative">
-      <button
-        onClick={toggleDropdown}
-        className="flex items-center p-2 hover:bg-gray-100 w-full text-left"
-      >
-        <Link to="/Online-Reputation-Orm" className="flex-1">
-          Online Reputation Management (ORM)
-        </Link>
-        <FaChevronDown className="h-4 w-4 text-gray-600" />
-      </button>
-      {isOpen && (
-        <ul className="absolute left-0 mt-2 w-full bg-white border border-gray-200 shadow-lg z-10">
-          <li>
-            <Link
-              to="/Brand-Reputation"
-              className="block p-2 hover:bg-gray-100"
-            >
-              Brand Reputation Management
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/Celebrity-Reputation"
-              className="block p-2 hover:bg-gray-100"
-            >
-              Celebrity Reputation Management
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/Corporate-Reputation"
-              className="block p-2 hover:bg-gray-100"
-            >
-              Corporate Reputation Management
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/Online-Reputation"
-              className="block p-2 hover:bg-gray-100"
-            >
-              Online Reputation Management
-            </Link>
-          </li>
-        </ul>
-      )}
-    </li>
+                        <button
+                          onClick={toggleDropdown}
+                          className="flex items-center p-2 hover:bg-gray-100 w-full text-left"
+                        >
+                          <Link to="#" className="flex-1">
+                            Online Reputation Management (ORM)
+                          </Link>
+                          <FaChevronDown className="h-4 w-4 text-gray-600" />
+                        </button>
+                        {isOpen && (
+                          <ul className="absolute left-0 mt-2 w-full bg-white border border-gray-200 shadow-lg z-10">
+                            <li>
+                              <Link
+                                to="/Brand-Reputation"
+                                className="block p-2 hover:bg-gray-100"
+                              >
+                                Brand Reputation Management
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/Celebrity-Reputation"
+                                className="block p-2 hover:bg-gray-100"
+                              >
+                                Celebrity Reputation Management
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/Corporate-Reputation"
+                                className="block p-2 hover:bg-gray-100"
+                              >
+                                Corporate Reputation Management
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/Online-Reputation"
+                                className="block p-2 hover:bg-gray-100"
+                              >
+                                Online Reputation Management
+                              </Link>
+                            </li>
+                          </ul>
+                        )}
+                      </li>
                       <li>
                         <Link
                           to="/Web-Designing"
@@ -181,6 +181,7 @@ export default function Header() {
                     </ul>
                   )}
                 </li>
+
                 {/* Repeat similar pattern for other dropdown items */}
                 {/* SEO */}
                 <li
@@ -307,15 +308,66 @@ export default function Header() {
                           Responsive Web Design
                         </Link>
                       </li>
-                      <li>
-                        <Link
-                          to="/web-development"
-                          className="block p-2 py-2 hover:bg-gray-100"
-                          onClick={() => setMobileMenuOpen(false)}
+
+                      <li className="relative group">
+                        <button
+                          onClick={toggleDropdown}
+                          onMouseEnter={() => setIsOpen(true)}
+                          onMouseLeave={() =>
+                            !document.querySelector(".dropdown-menu:hover") &&
+                            closeDropdown()
+                          }
+                          className="flex items-center p-2 hover:bg-gray-100 w-full text-left"
                         >
-                          Web Development
-                        </Link>
+                          <Link to="#" className="flex-1">
+                            Web Development
+                          </Link>
+                          <FaChevronDown className="h-4 w-4 text-gray-600" />
+                        </button>
+                        {isOpen && (
+                          <div
+                            className="absolute left-full top-0 mt-0 ml-2 w-max bg-white border border-gray-200 shadow-lg z-10 dropdown-menu"
+                            onMouseEnter={() => setIsOpen(true)}
+                            onMouseLeave={() => closeDropdown()}
+                          >
+                            <ul className="list-none p-0 m-0">
+                              <li>
+                                <Link
+                                  to="/E-commerce-Development"
+                                  className="block p-2 hover:bg-gray-100"
+                                >
+                                  E-commerce Development
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/PHP-WebDevelopment"
+                                  className="block p-2 hover:bg-gray-100"
+                                >
+                                  PHP Web Development
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/Laravel-Development"
+                                  className="block p-2 hover:bg-gray-100"
+                                >
+                                  Laravel Development
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/Magento-Development"
+                                  className="block p-2 hover:bg-gray-100"
+                                >
+                                  Magento Development
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        )}
                       </li>
+
                       <li>
                         <Link
                           to="/Ecommerce-Website-Design"
@@ -327,11 +379,20 @@ export default function Header() {
                       </li>
                       <li>
                         <Link
-                          to="/SEO-Friendly-Design"
+                          to="/Seo-Friendly-Design"
                           className="block p-2 py-2 hover:bg-gray-100"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           SEO Friendly Design
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Graphic-Design"
+                          className="block p-2 py-2 hover:bg-gray-100"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Graphic Design
                         </Link>
                       </li>
                       <li>
@@ -355,6 +416,7 @@ export default function Header() {
                     </ul>
                   )}
                 </li>
+
                 {/* INDUSTRIES */}
                 <li
                   className="relative group"
@@ -385,7 +447,7 @@ export default function Header() {
                       </li>
                       <li>
                         <Link
-                          to="/Ecommerce-Solution"
+                          to="/ECommerce-Solution"
                           className="block p-6 py-2 hover:bg-gray-100"
                         >
                           Ecommerce Solution
@@ -480,7 +542,7 @@ export default function Header() {
                     <ul className="absolute left-0 mt-2 bg-white text-black w-72 shadow-lg border border-gray-200">
                       <li>
                         <Link
-                          to="/ecommerce-optimization"
+                          to="/ECommerce-optimization"
                           className="block p-6 py-2 hover:bg-gray-100"
                         >
                           Ecommerce Optimization
@@ -488,7 +550,7 @@ export default function Header() {
                       </li>
                       <li>
                         <Link
-                          to="/ecommerce-seo"
+                          to="/ECommerce-seo"
                           className="block p-6 py-2 hover:bg-gray-100"
                         >
                           Ecommerce SEO
@@ -496,7 +558,7 @@ export default function Header() {
                       </li>
                       <li>
                         <Link
-                          to="/ecommerce-ppc"
+                          to="/ECommerce-ppc"
                           className="block p-6 py-2 hover:bg-gray-100"
                         >
                           Ecommerce PPC
@@ -577,29 +639,7 @@ export default function Header() {
                     onClick={() => handleDropdownToggle(6)}
                   >
                     CONTACT
-                    <FontAwesomeIcon icon={faChevronDown} className="ml-2" />
-                  </NavLink>
-                  {openDropdown === 6 && (
-                    <ul className="absolute left-0 mt-2 bg-white text-black w-48 shadow-lg border border-gray-200">
-                      <li>
-                        <Link
-                          to="/contact-us"
-                          className="block p-6 py-2 hover:bg-gray-100"
-                        >
-                          Contact Us
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/support"
-                          className="block p-6 py-2 hover:bg-gray-100"
-                        >
-                          Support
-                        </Link>
-                      </li>
-                      {/* Add more contact items as needed */}
-                    </ul>
-                  )}
+                  </NavLink>        
                 </li>
               </ul>
             </div>
@@ -1050,34 +1090,9 @@ export default function Header() {
                   <li className="relative group">
                     <button
                       className="block py-2 p-6 duration-200 text-gray-700  w-full text-left"
-                      onClick={() => handleDropdownToggle(6)}
                     >
                       CONTACT
-                      <FontAwesomeIcon icon={faChevronDown} className="ml-2" />
-                    </button>
-                    {openDropdown === 6 && (
-                      <ul className="bg-white text-black w-full mt-2 border border-gray-200">
-                        <li>
-                          <Link
-                            to="/contact-us"
-                            className="block p-6 py-2 hover:bg-gray-100"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/support"
-                            className="block p-6 py-2 hover:bg-gray-100"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            Support
-                          </Link>
-                        </li>
-                        {/* Add more contact items as needed */}
-                      </ul>
-                    )}
+                    </button>   
                   </li>
                 </ul>
               </div>

@@ -1,15 +1,23 @@
 import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
-import { Outlet } from "react-router-dom";
 
 function Layout() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  // Check if the path starts with "/dashboard" or "/admin"
+  const hideHeaderFooter = path.startsWith("/dashboard") || path.startsWith("/admin") || path.startsWith("/login");
+  
+
   return (
     <>
-      <Header />
+      {!hideHeaderFooter && <Header />}
       <Outlet />
-      <Footer />
+      
+      {!hideHeaderFooter && <Footer />}
     </>
   );
 }
