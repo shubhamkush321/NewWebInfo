@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigation } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -8,6 +9,7 @@ const Login = () => {
   const [validationClass, setValidationClass] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate  = useNavigation();
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -37,18 +39,18 @@ const Login = () => {
     event.preventDefault(); // Prevents the default form submission behavior
 
     try {
-        // Sends a POST request to the backend with the username and password
+       
         const response = await axios.post('http://localhost:5000/api/login', {
             username,
             password
         });
 
-        // Checks if the response contains a token (successful login)
+       
         if (response.data.token) {
             // Stores the token in localStorage
             localStorage.setItem('token', response.data.token);
-            // Redirects to the dashboard
-            window.location.href = '/dashboard'; 
+            navigate('/admin');
+            
         }
     } catch (error) {
         // Sets validation error class if login fails
