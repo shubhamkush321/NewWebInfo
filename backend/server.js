@@ -50,8 +50,8 @@ const phpDevelopmentRoutes = require('./routes/DesignDevelopment/phpDataRoutes')
 const laravelRoutes = require('./routes/DesignDevelopment/LaravelDevelopment');
 const magentoDevelopmentRoutes = require('./routes/DesignDevelopment/MagentoDevelopment');
 const DesignECommerceRoutes = require('./routes/DesignDevelopment/EcommerceWebsite');
-const flashAnimationRoutes = require('./routes/DesignDevelopment/FlashAnimation');
-
+const flashDataRoutes = require('./routes/DesignDevelopment/FlashAnimation');
+const graphicDesignRoutes = require('./routes/DesignDevelopment/GraphicDesign');
 
 
 //Industries
@@ -107,7 +107,8 @@ app.use('/api/php-development', phpDevelopmentRoutes);
 app.use('/api/laravel', laravelRoutes);
 app.use('/api/magento-development', magentoDevelopmentRoutes);
 app.use('/api/design-ecommerce', DesignECommerceRoutes);
-app.use('/api/flash-animation', flashAnimationRoutes);
+app.use('/api/flash-data', flashDataRoutes);
+app.use('/api/graphic-designs', graphicDesignRoutes);
 
 //Industries
 app.use('/api/industriesECommerce', industriesECommerceRoutes);

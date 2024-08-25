@@ -1,66 +1,56 @@
-// controllers/flashAnimationController.js
-const FlashAnimation = require('../../models/DesignDevelopment/FlashAnimation');
+const FlashData = require('../../models/DesignDevelopment/FlashAnimation');
 
-exports.createSection = async (req, res) => {
+// Create a new FlashData entry
+exports.createFlashData = async (req, res) => {
+  console.log(req.body); // Log request body for debugging
   try {
-    const { type, id, title, paragraphs, image, imageAlt, listItems } = req.body;
-
-    // Validate required fields
-    if (!type || !id || !title) {
-      return res.status(400).json({ message: "type, id, and title are required" });
-    }
-
-    // Create and save the new section
-    const newSection = new FlashAnimation({ type, id, title, paragraphs, image, imageAlt, listItems });
-    await newSection.save();
-    res.status(201).json(newSection);
-  } catch (err) {
-    console.error("Error creating section:", err);
-    res.status(500).json({ message: err.message });
+    const flashData = Array.isArray(req.body) ? req.body : [req.body];
+    const result = await FlashData.insertMany(flashData); // Use insertMany if sending an array
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-exports.getAllSections = async (req, res) => {
+// Read all FlashData entries
+exports.getAllFlashData = async (req, res) => {
   try {
-    const sections = await FlashAnimation.find();
-    res.status(200).json(sections);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const flashData = await FlashData.find();
+    res.status(200).json(flashData);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-exports.getSectionById = async (req, res) => {
+// Read a single FlashData entry by ID
+exports.getFlashDataById = async (req, res) => {
   try {
-    const section = await FlashAnimation.findById(req.params.id);
-    if (!section) {
-      return res.status(404).json({ message: "Section not found" });
-    }
-    res.status(200).json(section);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const flashData = await FlashData.findById(req.params.id);
+    if (!flashData) return res.status(404).json({ error: 'FlashData not found' });
+    res.status(200).json(flashData);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-exports.updateSection = async (req, res) => {
+// Update a FlashData entry by ID
+exports.updateFlashData = async (req, res) => {
   try {
-    const section = await FlashAnimation.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!section) {
-      return res.status(404).json({ message: "Section not found" });
-    }
-    res.status(200).json(section);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const updatedFlashData = await FlashData.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedFlashData) return res.status(404).json({ error: 'FlashData not found' });
+    res.status(200).json(updatedFlashData);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-exports.deleteSection = async (req, res) => {
+// Delete a FlashData entry by ID
+exports.deleteFlashData = async (req, res) => {
   try {
-    const section = await FlashAnimation.findByIdAndDelete(req.params.id);
-    if (!section) {
-      return res.status(404).json({ message: "Section not found" });
-    }
-    res.status(200).json({ message: "Section deleted successfully" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const deletedFlashData = await FlashData.findByIdAndDelete(req.params.id);
+    if (!deletedFlashData) return res.status(404).json({ error: 'FlashData not found' });
+    res.status(200).json({ message: 'FlashData deleted successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };

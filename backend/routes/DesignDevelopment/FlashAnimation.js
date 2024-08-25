@@ -1,21 +1,20 @@
-// routes/flashAnimation.js
 const express = require('express');
 const router = express.Router();
-const flashAnimationController = require('../../controllers/DesignDevelopment/FlashAnimation');
+const flashDataController = require('../../controllers/DesignDevelopment/FlashAnimation');
 
-// Create a new section
-router.post('/', flashAnimationController.createSection);
+// Create a new FlashData entry
+router.post('/', flashDataController.createFlashData);
 
-// Get all sections
-router.get('/', flashAnimationController.getAllSections);
+// Read all FlashData entries
+router.get('/', flashDataController.getAllFlashData);
 
-// Get a section by ID
-router.get('/:id', flashAnimationController.getSectionById);
+// Read a single FlashData entry by ID
+router.get('/:id', flashDataController.getFlashDataById);
 
-// Update a section
-router.put('/:id', flashAnimationController.updateSection);
+// Update a FlashData entry by ID
+router.put('/:id', flashDataController.updateFlashData);
 
-// Delete a section
-router.delete('/:id', flashAnimationController.deleteSection);
+// Delete a FlashData entry by ID
+router.delete('/:id', flashDataController.deleteFlashData);
 
 module.exports = router;
