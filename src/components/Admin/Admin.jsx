@@ -18,7 +18,6 @@ const Admin = () => {
     }
   }, [token, navigate]); // Run this effect when `token` or `navigate` changes
 
-  // If no token, don't render the admin UI
   if (!token) {
     return null;
   }
