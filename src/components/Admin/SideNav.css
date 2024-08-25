@@ -1,6 +1,8 @@
 
 .content {
   position: relative;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .content h2 {

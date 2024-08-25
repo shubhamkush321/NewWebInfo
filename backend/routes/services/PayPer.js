@@ -1,20 +1,18 @@
+// routes/payPerRoutes.js
 const express = require('express');
 const router = express.Router();
-const payPerController = require('../../controllers/Services/payPer');
+const PayPerController = require('../../controllers/Services/payPer');
 
-// Create a new PayPer entry
-router.post('/', payPerController.createPayPer);
+// Get all PPC data
+router.get('/', PayPerController.getAll);
 
-// Get all PayPer entries
-router.get('/', payPerController.getPayPer);
+// Create new PPC data
+router.post('/', PayPerController.create);
 
-// Get a single PayPer entry by ID
-router.get('/:id', payPerController.getPayPerById);
+// Update existing PPC data
+router.put('/:id', PayPerController.update);
 
-// Update a PayPer entry by ID
-router.put('/:id', payPerController.updatePayPer);
-
-// Delete a PayPer entry by ID
-router.delete('/:id', payPerController.deletePayPer);
+// Delete PPC data
+router.delete('/:id', PayPerController.delete);
 
 module.exports = router;

@@ -20,7 +20,7 @@ const navItems = [
 
 const SideNav = () => {
   return (
-    <div className="w-60 h-screen bg-gray-900 text-white p-6 shadow-lg">
+    <div className="w-60 h-full bg-gray-900 text-white p-6 shadow-lg">
       <Link to="/admin" className="flex items-center mb-6 relative">
       <div class="content">
         <h2>WebInfomotrix</h2>

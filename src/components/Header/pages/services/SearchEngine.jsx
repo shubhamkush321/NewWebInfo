@@ -48,7 +48,7 @@ const SearchEngine = () => {
           style={{ width: "100%", height: "auto" }}
         />
       )}
-      <div className="lg:p-44 ">
+      <div className="lg:p-44">
         <div className="container mx-auto px-4">
           {data.sections && data.sections.length > 0 && (
             <div className="text-center">

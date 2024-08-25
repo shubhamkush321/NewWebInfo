@@ -1,66 +1,45 @@
-const PayPerClick = require('../../models/Services/PayPerClick'); 
+// controllers/PayPerController.js
+const PayPer = require('../../models/Services/PayPerClick');
 
-// Create a new PayPer entry
-exports.createPayPer = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
-    console.log('Request Body:', req.body); 
-    const payPerArray = req.body;
-    if (!Array.isArray(payPerArray)) {
-      return res.status(400).json({ error: 'Request body should be an array of items' });
-    }
-    const createdItems = await PayPerClick.insertMany(payPerArray);
-    res.status(201).json(createdItems);
+    const data = await PayPer.find();
+    res.json(data);
   } catch (error) {
-    console.error('Error:', error.message); // Additional logging
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
-// Get all PayPer entries
-exports.getPayPer = async (req, res) => {
+exports.create = async (req, res) => {
   try {
-    const payPer = await PayPerClick.find();
-    res.status(200).json(payPer);
+    const newPayPer = new PayPer(req.body);
+    await newPayPer.save();
+    res.status(201).json(newPayPer);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: 'Bad request' });
   }
 };
 
-// Get a single PayPer entry by ID
-exports.getPayPerById = async (req, res) => {
+exports.update = async (req, res) => {
   try {
-    const payPer = await PayPerClick.findById(req.params.id);
-    if (!payPer) {
-      return res.status(404).json({ error: 'PayPer entry not found' });
+    const updatedPayPer = await PayPer.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedPayPer) {
+      return res.status(404).json({ error: 'PayPer not found' });
     }
-    res.status(200).json(payPer);
+    res.json(updatedPayPer);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: 'Bad request' });
   }
 };
 
-// Update a PayPer entry by ID
-exports.updatePayPer = async (req, res) => {
+exports.delete = async (req, res) => {
   try {
-    const payPer = await PayPerClick.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!payPer) {
-      return res.status(404).json({ error: 'PayPer entry not found' });
+    const deletedPayPer = await PayPer.findByIdAndDelete(req.params.id);
+    if (!deletedPayPer) {
+      return res.status(404).json({ error: 'PayPer not found' });
     }
-    res.status(200).json(payPer);
+    res.json({ message: 'PayPer deleted successfully' });
   } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-// Delete a PayPer entry by ID
-exports.deletePayPer = async (req, res) => {
-  try {
-    const payPer = await PayPerClick.findByIdAndDelete(req.params.id);
-    if (!payPer) {
-      return res.status(404).json({ error: 'PayPer entry not found' });
-    }
-    res.status(200).json({ message: 'PayPer entry deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'Server error' });
   }
 };

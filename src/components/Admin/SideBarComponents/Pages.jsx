@@ -22,11 +22,12 @@ const Pages = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [digitalMarketingResponse, searchEnginesResponse] = await Promise.all([
+        const [digitalMarketingResponse, payperResponse] = await Promise.all([
           axios.get(`${SERVERAPI}/api/digital-marketing`),
-          axios.get(`${SERVERAPI}/api/search-engines`),
+          axios.get(`${SERVERAPI}/api/payper`),
         ]);
-
+        console.log(digitalMarketingResponse.data);
+        console.log(payperResponse.data);
         const digitalMarketingData = digitalMarketingResponse.data.map(item => ({
           id: item._id || '',
           title: item.title || 'Untitled',
@@ -34,14 +35,14 @@ const Pages = () => {
           sections: item.sections || [],
         }));
 
-        const searchEnginesData = searchEnginesResponse.data.map(item => ({
+        const payper = payperResponse.data.map(item => ({
           id: item._id || '',
           title: item.title || 'Untitled',
           createdAt: item.createdAt || 'Unknown Date',
           sections: item.sections || [],
         }));
 
-        const combinedData = [...digitalMarketingData, ...searchEnginesData];
+        const combinedData = [...digitalMarketingData, ...payper];
         setData(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);
