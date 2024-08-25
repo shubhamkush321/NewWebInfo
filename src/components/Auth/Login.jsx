@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { SERVERAPI } from "../../common/common";
 
 const Login = () => {
   const [formClass, setFormClass] = useState("");
@@ -9,7 +10,7 @@ const Login = () => {
   const [validationClass, setValidationClass] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate  = useNavigation();
+  const navigation = useNavigate();
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -37,28 +38,19 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
-
     try {
-       
-        const response = await axios.post('http://localhost:5000/api/login', {
-            username,
-            password
-        });
-
-       
-        if (response.data.token) {
-            // Stores the token in localStorage
-            localStorage.setItem('token', response.data.token);
-            navigate('/admin');
-            
-        }
+      const response = await axios.post(`${SERVERAPI}/api/login`, {
+        username,
+        password,
+      });
+      localStorage.setItem("token", response.data.token);
+      navigation("/admin");
     } catch (error) {
-        // Sets validation error class if login fails
-        setValidationClass("wrong-entry");
-        // Resets validation class after 3 seconds
-        setTimeout(() => {
-            setValidationClass("");
-        }, 3000);
+      console.log(error);
+      setValidationClass("wrong-entry");
+      setTimeout(() => {
+        setValidationClass("");
+      }, 3000);
     }
   };
 

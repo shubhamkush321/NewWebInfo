@@ -31,7 +31,7 @@ import SmallBusiness from "./components/Header/pages/Seo/SmallBusiness.jsx";
 import Video from "./components/Header/pages/Seo/Video.jsx";
 //Design and development
 // import ECommerceWebSiteDesign from "./components/Header/pages/DesignDevelopment/ECommerceWebsite.jsx";
-import ECommerceWebSiteDesign from "./components/Header/pages/DesignDevelopment/ECommerceWebsite.jsx"; 
+import ECommerceWebSiteDesign from "./components/Header/pages/DesignDevelopment/ECommerceWebsite.jsx";
 import FlashAnimation from "./components/Header/pages/DesignDevelopment/FlashAnimation.jsx";
 import Multimedia from "./components/Header/pages/DesignDevelopment/Multimedia.jsx";
 import Responsive from "./components/Header/pages/DesignDevelopment/Responsive.jsx";
@@ -64,8 +64,6 @@ import AmazonStore from "./components/Header/pages/ECommerce/AmazonStores.jsx";
 import AmazonSeller from "./components/Header/pages/ECommerce/AmazonSeller.jsx";
 import AmazonPostMange from "./components/Header/pages/ECommerce/AmazonPost.jsx";
 
-
-
 // Admin & Auth
 import Admin from "./components/Admin/Admin.jsx";
 import Pages from "./components/Admin/SideBarComponents/Pages.jsx";
@@ -76,17 +74,12 @@ import Testimonials from "./components/Admin/SideBarComponents/Testimonials.jsx"
 import Dashboard from "./components/Admin/SideBarComponents/Dashboard.jsx";
 import Cards from "./components/Admin/SideBarComponents/Cards.jsx";
 
-
-
 import Login from "./components/Auth/Login.jsx";
 import Navigate from "./components/Auth/Navigate.jsx";
 
-const isAuthenticated = true;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-   
-     
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       {/* services */}
@@ -111,18 +104,24 @@ const router = createBrowserRouter(
       <Route path="/Small-Business" element={<SmallBusiness />} />
       <Route path="/Video" element={<Video />} />
       {/* Design and development */}
-      <Route path="/Ecommerce-Website-Design" element={<ECommerceWebSiteDesign />} />
+      <Route
+        path="/Ecommerce-Website-Design"
+        element={<ECommerceWebSiteDesign />}
+      />
       <Route path="/Flash-Animation-Design" element={<FlashAnimation />} />
       <Route path="/Multimedia-Designing" element={<Multimedia />} />
       <Route path="/Responsive-Web-Design" element={<Responsive />} />
       <Route path="/Seo-Friendly-Design" element={<SeoFriendly />} />
-      <Route path="/E-commerce-Development" element={<ECommerceDevelopment />} />
+      <Route
+        path="/E-commerce-Development"
+        element={<ECommerceDevelopment />}
+      />
       <Route path="/PHP-WebDevelopment" element={<PHPDevelopment />} />
       <Route path="/Laravel-Development" element={<LaravelDevelopment />} />
       <Route path="/Magento-Development" element={<MagentoDevelopment />} />
       <Route path="/Graphic-Design" element={<GraphicDesign />} />
       {/* Industries */}
-      <Route path="/Accounting-Firms" element={<AccountingFirms/>} />
+      <Route path="/Accounting-Firms" element={<AccountingFirms />} />
       <Route path="/ECommerce-Solution" element={<IndustriesECommerce />} />
       <Route path="/education" element={<Educational />} />
       <Route path="/Electronics-Companies" element={<ElectronicsCompanies />} />
@@ -133,7 +132,10 @@ const router = createBrowserRouter(
       <Route path="/Media-Entertainment" element={<MediaEntertainment />} />
       <Route path="/Online-Courses" element={<OnlineCourses />} />
       {/* ECommerce-Marketing */}
-      <Route path="/ECommerce-optimization" element={<ECommerceOptimization />} />
+      <Route
+        path="/ECommerce-optimization"
+        element={<ECommerceOptimization />}
+      />
       <Route path="/ECommerce-seo" element={<ECommerceSEO />} />
       <Route path="/ECommerce-ppc" element={<ECommercePPC />} />
       <Route path="/shopify-seo" element={<ShopifySEO />} />
@@ -143,15 +145,9 @@ const router = createBrowserRouter(
       <Route path="/amazon-storefront" element={<AmazonStore />} />
       <Route path="/amazon-sellar-consulting" element={<AmazonSeller />} />
       <Route path="/amazon-posts-management" element={<AmazonPostMange />} />
-      
-      
-       {/* Admin Routes with Nested Routes */}
-       <Route
-        path="admin"
-        element={
-          isAuthenticated ? <Admin /> : <Navigate to="/login" />
-        }
-      >
+
+      {/* Admin Routes with Nested Routes */}
+      <Route path="/admin" element={<Admin />}>
         <Route path="blog" element={<Blog />} />
         <Route path="DigitalCards" element={<DigitalCards />} />
         <Route path="Dashboard" element={<Dashboard />} />
@@ -160,10 +156,8 @@ const router = createBrowserRouter(
         <Route path="Testimonials" element={<Testimonials />} />
         <Route path="Cards" element={<Cards />} />
       </Route>
-
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<Navigate to="/" />} />
-    
     </Route>
   )
 );

@@ -1,12 +1,27 @@
-import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import SideNav from './SideNav';
-import TopNav from './TopNav';
-import Dashboard from './SideBarComponents/Dashboard';
+import React, { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import SideNav from "./SideNav";
+import TopNav from "./TopNav";
+import Dashboard from "./SideBarComponents/Dashboard";
 
 const Admin = () => {
   const location = useLocation();
-  const isDashboard = location.pathname === '/admin' || location.pathname === '/admin/';
+  const isDashboard =
+    location.pathname === "/admin" || location.pathname === "/admin/";
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      console.log("No token found, navigating to login");
+      navigate("/login");
+    }
+  }, [token, navigate]); // Run this effect when `token` or `navigate` changes
+
+  // If no token, don't render the admin UI
+  if (!token) {
+    return null;
+  }
 
   return (
     <div className="flex">
@@ -14,8 +29,8 @@ const Admin = () => {
       <div className="flex-1 flex flex-col">
         <TopNav />
         <div className="flex-1 p-6 overflow-y-auto">
-          {isDashboard && <Dashboard />} 
-          <Outlet /> 
+          {isDashboard && <Dashboard />}
+          <Outlet />
         </div>
       </div>
     </div>
