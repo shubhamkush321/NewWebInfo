@@ -1,27 +1,38 @@
-// models/searchEngineModel.js
 const mongoose = require('mongoose');
 
-const searchEngineSchema = new mongoose.Schema({
-  heroImage: [String],
-  sections: [
+// Define the section schema
+const sectionSchema = new mongoose.Schema({
+  header: { type: String, required: true },
+  description: [{ type: String, required: true }],
+  links: [
     {
-      title: String,
-      content: [String],
+      text: { type: String, required: true },
+      url: { type: String, required: true }
     }
   ],
-  servicesAndBenefits: {
-    services: [String],
-    benefits: [String]
-  },
-  keywords: [String],
+  services: [
+    {
+      title: { type: String, required: true },
+      description: { type: String, required: true }
+    }
+  ],
+  locations: [{ type: String }]
+});
+
+// Define the main schema
+const searchEngineSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  schemaName: { type: String, default: "SearchEngine" },
+  sections: [sectionSchema],
   faqs: [
     {
-      question: String,
-      answer: String,
+      question: { type: String, required: true },
+      answer: { type: String, required: true }
     }
   ]
 });
 
+// Create the model
 const SearchEngine = mongoose.model('SearchEngine', searchEngineSchema);
 
 module.exports = SearchEngine;

@@ -1,62 +1,56 @@
-// controllers/searchEngineController.js
-const SearchEngine = require('../../models/Services/SearchEngine');
+// controllers/digitalMarketingController.js
+const DigitalMarketing = require('../../models/Services/SearchEngine');
 
-// Create a new document
-exports.createSearchEngine = async (req, res) => {
+// Get all SEO service data
+exports.getAllData = async (req, res) => {
   try {
-    const searchEngine = new SearchEngine(req.body);
-    await searchEngine.save();
-    res.status(201).json(searchEngine);
+    const data = await DigitalMarketing.find();
+    res.json(data);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Read all documents
-exports.getAllSearchEngines = async (req, res) => {
+// Get a specific SEO service data by ID
+exports.getDataById = async (req, res) => {
   try {
-    const searchEngines = await SearchEngine.find();
-    res.status(200).json(searchEngines);
+    const data = await DigitalMarketing.findById(req.params.id);
+    if (!data) return res.status(404).json({ message: 'Data not found' });
+    res.json(data);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Read a single document
-exports.getSearchEngineById = async (req, res) => {
+// Create new SEO service data
+exports.createData = async (req, res) => {
+  const data = new DigitalMarketing(req.body);
   try {
-    const searchEngine = await SearchEngine.findById(req.params.id);
-    if (!searchEngine) {
-      return res.status(404).json({ error: 'SearchEngine not found' });
-    }
-    res.status(200).json(searchEngine);
+    const newData = await data.save();
+    res.status(201).json(newData);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
-// Update a document
-exports.updateSearchEngine = async (req, res) => {
+// Update SEO service data by ID
+exports.updateData = async (req, res) => {
   try {
-    const searchEngine = await SearchEngine.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!searchEngine) {
-      return res.status(404).json({ error: 'SearchEngine not found' });
-    }
-    res.status(200).json(searchEngine);
+    const data = await DigitalMarketing.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!data) return res.status(404).json({ message: 'Data not found' });
+    res.json(data);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
-// Delete a document
-exports.deleteSearchEngine = async (req, res) => {
+// Delete SEO service data by ID
+exports.deleteData = async (req, res) => {
   try {
-    const searchEngine = await SearchEngine.findByIdAndDelete(req.params.id);
-    if (!searchEngine) {
-      return res.status(404).json({ error: 'SearchEngine not found' });
-    }
-    res.status(200).json({ message: 'SearchEngine deleted successfully' });
+    const data = await DigitalMarketing.findByIdAndDelete(req.params.id);
+    if (!data) return res.status(404).json({ message: 'Data not found' });
+    res.json({ message: 'Data deleted' });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

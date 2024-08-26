@@ -1,19 +1,19 @@
-// routes/searchEngineRoutes.js
+// routes/digitalMarketingRoutes.js
 const express = require('express');
 const router = express.Router();
 const {
-  createSearchEngine,
-  getAllSearchEngines,
-  getSearchEngineById,
-  updateSearchEngine,
-  deleteSearchEngine
+  getAllData,
+  getDataById,
+  createData,
+  updateData,
+  deleteData
 } = require('../../controllers/Services/SearchEngine');
 
-// CRUD routes
-router.post('/', createSearchEngine);
-router.get('/', getAllSearchEngines);
-router.get('/:id', getSearchEngineById);
-router.put('/:id', updateSearchEngine);
-router.delete('/:id', deleteSearchEngine);
+// Define routes
+router.get('/', getAllData);
+router.get('/:id', getDataById);
+router.post('/', createData);
+router.put('/:id', updateData);
+router.delete('/:id', deleteData);
 
 module.exports = router;

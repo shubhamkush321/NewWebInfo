@@ -59,7 +59,7 @@ function EditFormData({ formData }) {
   };
 
   return (
-    <div className="flex flex-col gap-4 max-w-3xl mx-auto p-4 -mt-14">
+    <div className="flex flex-col gap-4 mx-auto p-4 -mt-14">
     <h1 className="text-3xl font-bold text-center my-6">{formData?.title}</h1>
     {formData?.sections?.map((item, index) => (
       <div

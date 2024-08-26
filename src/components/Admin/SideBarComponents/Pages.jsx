@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SERVERAPI } from '../../../common/common';
-import EditForm from '../EditFormData';
 import EditFormData from '../EditFormData';
 
 const Pages = () => {
@@ -22,12 +21,11 @@ const Pages = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [digitalMarketingResponse, payperResponse] = await Promise.all([
+        const [digitalMarketingResponse, payperResponse, searchEngineResponse] = await Promise.all([
           axios.get(`${SERVERAPI}/api/digital-marketing`),
           axios.get(`${SERVERAPI}/api/payper`),
+          axios.get(`${SERVERAPI}/api/search-engine`),
         ]);
-        console.log(digitalMarketingResponse.data);
-        console.log(payperResponse.data);
         const digitalMarketingData = digitalMarketingResponse.data.map(item => ({
           id: item._id || '',
           title: item.title || 'Untitled',
@@ -42,7 +40,14 @@ const Pages = () => {
           sections: item.sections || [],
         }));
 
-        const combinedData = [...digitalMarketingData, ...payper];
+        const searchEngine = searchEngineResponse.data.map(item => ({
+          id: item._id || '',
+          title: item.title || 'Untitled',
+          createdAt: item.createdAt || 'Unknown Date',
+          sections: item.sections || [],
+        }));
+
+        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine];
         setData(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -112,7 +117,7 @@ const Pages = () => {
   );
 
   return (
-    <div className="bg-white w-full max-w-screen-lg mx-auto p-4 rounded shadow-md">
+    <div className="bg-white w-full max-w-screen-lg mx-auto lg:p-4 mr-10">
       {loading ? (
         <p>Loading...</p>
       ) : (
