@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-// Define a sub-schema for the sections to keep it clean
 const sectionSchema = new mongoose.Schema({
   header: { type: String, required: true },
   description: [{ type: String, required: true }],
-  links: [{ text: { type: String, required: true }, url: { type: String, required: true } }],
-  services: [{ title: { type: String, required: true }, description: { type: String, required: true } }],
+  links: [{ text: { type: String, required: true }, 
+    url: { type: String, required: true } }],
+  services: [{ title: { type: String, required: true }, 
+    description: { type: String, required: true } }],
   locations: [{ type: String, required: true }]
 });
 

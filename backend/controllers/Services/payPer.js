@@ -1,45 +1,55 @@
-// controllers/PayPerController.js
 const PayPer = require('../../models/Services/PayPerClick');
 
-exports.getAll = async (req, res) => {
+// Create a new PayPer document
+exports.createPayPer = async (req, res) => {
   try {
-    const data = await PayPer.find();
-    res.json(data);
+    const payPer = new PayPer(req.body);
+    await payPer.save();
+    res.status(201).json(payPer);
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    res.status(400).json({ error: error.message });
   }
 };
 
-exports.create = async (req, res) => {
+// Get all PayPer documents
+exports.getAllPayPer = async (req, res) => {
   try {
-    const newPayPer = new PayPer(req.body);
-    await newPayPer.save();
-    res.status(201).json(newPayPer);
+    const payPers = await PayPer.find();
+    res.status(200).json(payPers);
   } catch (error) {
-    res.status(400).json({ error: 'Bad request' });
+    res.status(500).json({ error: error.message });
   }
 };
 
-exports.update = async (req, res) => {
+// Get a single PayPer document by ID
+exports.getPayPerById = async (req, res) => {
   try {
-    const updatedPayPer = await PayPer.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedPayPer) {
-      return res.status(404).json({ error: 'PayPer not found' });
-    }
-    res.json(updatedPayPer);
+    const payPer = await PayPer.findById(req.params.id);
+    if (!payPer) return res.status(404).json({ message: 'PayPer not found' });
+    res.status(200).json(payPer);
   } catch (error) {
-    res.status(400).json({ error: 'Bad request' });
+    res.status(500).json({ error: error.message });
   }
 };
 
-exports.delete = async (req, res) => {
+// Update a PayPer document by ID
+exports.updatePayPer = async (req, res) => {
   try {
-    const deletedPayPer = await PayPer.findByIdAndDelete(req.params.id);
-    if (!deletedPayPer) {
-      return res.status(404).json({ error: 'PayPer not found' });
-    }
-    res.json({ message: 'PayPer deleted successfully' });
+    const payPer = await PayPer.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!payPer) return res.status(404).json({ message: 'PayPer not found' });
+    res.status(200).json(payPer);
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Delete a PayPer document by ID
+exports.deletePayPer = async (req, res) => {
+  try {
+    const payPer = await PayPer.findByIdAndDelete(req.params.id);
+    if (!payPer) return res.status(404).json({ message: 'PayPer not found' });
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };

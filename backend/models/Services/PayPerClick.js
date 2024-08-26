@@ -1,22 +1,28 @@
-// models/PayPer.js
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-// Define a schema for the PPC sections
-const sectionSchema = new mongoose.Schema({
-  type: { type: String, required: true },
-  id: { type: String, required: true },
-  title: { type: String },
-  paragraphs: [{ type: String }],
-  list: [{ text: { type: String }, checked: { type: Boolean } }],
-  image: { type: String }  // Optional field for storing image URLs
+// Define the schema for list items
+const listItemSchema = new Schema({
+  text: String,
+  checked: Boolean
 });
 
-// Define the main schema
-const payPerSchema = new mongoose.Schema({
+// Define the schema for each section
+const sectionSchema = new Schema({
+  header: { type: String, required: true },
+  description: [String],
+  links: [{ text: String, url: String }],
+  services: [{ title: String, description: String }],
+  locations: [String],
+  list: [listItemSchema], 
+  image: String 
+});
+
+// Define the schema for the PayPer component
+const payPerSchema = new Schema({
+  title: { type: String, required: true },
+  schemaName: { type: String, default: "PayPer" },
   sections: [sectionSchema]
 });
 
-// Create the model
-const PayPer = mongoose.model('PayPer', payPerSchema);
-
-module.exports = PayPer;
+module.exports = mongoose.model('PayPer', payPerSchema);
