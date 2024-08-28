@@ -70,7 +70,7 @@ const barOptions = {
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col flex-1 p-4 overflow-y-auto">
+    <div className="flex flex-col flex-1 p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         {/* Dashboard Cards */}
         <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">

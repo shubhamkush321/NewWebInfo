@@ -34,7 +34,7 @@ const TopNav = () => {
   };
 
   return (
-    <div className="w-full bg-blue-900 p-4">
+    <div className=" bg-blue-900 p-4">
       <div className="flex justify-between items-center max-w-screen-lg mx-auto">
         <h2 className="text-xl font-bold text-white">DASHBOARD / PAGES</h2>
         {isAdminPage ? (

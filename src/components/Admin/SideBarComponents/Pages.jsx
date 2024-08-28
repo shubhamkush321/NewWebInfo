@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SERVERAPI } from '../../../common/common';
 import EditFormData from '../EditFormData';
+import { toast } from 'react-toastify';
 
 const Pages = () => {
   const [data, setData] = useState([]);
@@ -26,27 +27,34 @@ const Pages = () => {
           axios.get(`${SERVERAPI}/api/search-engine`),
         ]);
 
+        const digitalMarketingData = digitalMarketingResponse.data.map((item) => {
+          return {
+            ...item,
+            id: item._id || '',
+            title: item.title || 'Untitled',
+            createdAt: item.createdAt || 'Unknown Date',
+            sections: item.sections || [],
+          }
+        })
 
-        const digitalMarketingData = digitalMarketingResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
-
-        const payper = payperResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
-
-        const searchEngine = searchEngineResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
+        const payper = payperResponse.data.map((item) => {
+          return {
+            ...item,
+            id: item._id || '',
+            title: item.title || 'Untitled',
+            createdAt: item.createdAt || 'Unknown Date',
+            sections: item.sections || [],
+          }
+        })
+        const searchEngine = searchEngineResponse.data.map((item) => {
+          return {
+            ...item,
+            id: item._id || '',
+            title: item.title || 'Untitled',
+            createdAt: item.createdAt || 'Unknown Date',
+            sections: item.sections || [],
+          }
+        })
 
         const combinedData = [...digitalMarketingData, ...payper, ...searchEngine];
         setData(combinedData);
@@ -66,11 +74,7 @@ const Pages = () => {
   };
 
   const handleEditClick = (item) => {
-    setFormData({
-      title: item.title || '',
-      sections: item.sections || [],
-      // ... other fields
-    });
+    setFormData(item);
     setEditingItem(item);
     setEditForm(true);
   };
@@ -118,8 +122,42 @@ const Pages = () => {
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  console.log(data)
+
+  const onEditHandler = async (updateData, schemaName) => {
+    if (!updateData) {
+      toast.warning("Please select correct data.");
+      retrurn;
+    }
+    if (!schemaName) {
+      toast.warning("Please select Schema name.");
+      retrurn;
+    }
+
+    try {
+      await axios.put(`${SERVERAPI}/api/updateBySchema`, {
+        schemaName: schemaName,
+        updateData: updateData
+      });
+      const completeUpdated = data?.map((item) => {
+        if (item?.schemaName === schemaName) {
+          return { ...item, sections: updateData }
+        }
+        else {
+          return item;
+        }
+      })
+      toast.success("Data updated successfully.");
+      setData(completeUpdated);
+    }
+    catch (error) {
+      toast.error("Something went wrong.");
+      console.log(error);
+    }
+  }
+
   return (
-    <div className="bg-white w-full max-w-screen-lg mx-auto lg:p-4 mr-10">
+    <div className="bg-white  item-center lg:p-4">
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -187,7 +225,7 @@ const Pages = () => {
                   </table>
                 )}
               </div>
-            </div> : <EditFormData formData={formData} />
+            </div> : <EditFormData onEditHandler={onEditHandler} formData={formData} />
           }
         </>
       )}

@@ -21,11 +21,11 @@ const Admin = () => {
 
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <SideNav />
       <div className="flex-1 flex flex-col">
         <TopNav />
-        <div className="flex-1 p-6 overflow-y-auto">
+        <div className="ml-80">
           {isDashboard && <Dashboard />}
           <Outlet />
         </div>

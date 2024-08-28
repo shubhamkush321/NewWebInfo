@@ -15,6 +15,7 @@ exports.createPayPer = async (req, res) => {
 exports.getAllPayPer = async (req, res) => {
   try {
     const payPers = await PayPer.find();
+    console.log(payPers + "woo");
     res.status(200).json(payPers);
   } catch (error) {
     res.status(500).json({ error: error.message });

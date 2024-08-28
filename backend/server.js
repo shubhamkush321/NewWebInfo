@@ -1,6 +1,5 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -10,9 +9,9 @@ require('dotenv').config();
 const app = express();
 
 //Middleware
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: 'http://localhost:5173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
@@ -58,9 +57,9 @@ const graphicDesignRoutes = require('./routes/DesignDevelopment/GraphicDesign');
 const industriesECommerceRoutes = require('./routes/Industries/ECommerceRoutes');
 const manufacturingRoutes = require('./routes/Industries/manufacturingRoutes');
 const lawFirmContentRoutes = require('./routes/Industries/lawFirmContent');
-const AccountingRoutes = require ('./routes/Industries/accountingRoutes');
-const ElectronicRoutes = require ('./routes/Industries/ElectronicRoutes');
-const mediaContentRoutes = require('./routes/Industries/mediaContentRoutes'); 
+const AccountingRoutes = require('./routes/Industries/accountingRoutes');
+const ElectronicRoutes = require('./routes/Industries/ElectronicRoutes');
+const mediaContentRoutes = require('./routes/Industries/mediaContentRoutes');
 const educationRoutes = require('./routes/Industries/EducationRoutes');
 const onlineCourseRoutes = require('./routes/Industries/OnlineCoursesRoutes');
 
@@ -86,7 +85,7 @@ app.use('/api/digital-marketing', DigitalMarketingRoutes);
 app.use('/api/social-content', socialContentRoutes);
 app.use('/api/search-engine', searchEngineRoutes);
 app.use('/api/payper', payPerRoutes);
-app.use('/api/web-designing', webDesigningRoutes); 
+app.use('/api/web-designing', webDesigningRoutes);
 app.use('/api/website', websiteRoutes);
 
 //Seo
@@ -132,6 +131,10 @@ app.use('/api/ecommerceOp', ecommerceOpRoutes);
 app.use('/api/ecommercePpc', ecommercePpcRoutes);
 app.use('/api/ecommerceSeo', ecommerceSeoRoutes);
 app.use('/api/shopifySeo', shopifySeoRoutes);
+
+//updateBySchema
+app.use('/api/updateBySchema', require("./routes/updateBySchema/updateBySchemaRoutes"));
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
