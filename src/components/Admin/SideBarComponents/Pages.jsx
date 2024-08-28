@@ -21,10 +21,12 @@ const Pages = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [digitalMarketingResponse, payperResponse, searchEngineResponse] = await Promise.all([
+        const [digitalMarketingResponse, payperResponse, searchEngineResponse, socialContentResponse, webDesigningResponse] = await Promise.all([
           axios.get(`${SERVERAPI}/api/digital-marketing`),
           axios.get(`${SERVERAPI}/api/payper`),
           axios.get(`${SERVERAPI}/api/search-engine`),
+          axios.get(`${SERVERAPI}/api/socialcontent`),
+          axios.get(`${SERVERAPI}/api/web-designing`),
         ]);
         const digitalMarketingData = digitalMarketingResponse.data.map(item => ({
           id: item._id || '',
@@ -47,7 +49,21 @@ const Pages = () => {
           sections: item.sections || [],
         }));
 
-        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine];
+        const socialContent = socialContentResponse.data.map(item => ({
+          id: item._id || '',
+          title: item.title || 'Untitled',
+          createdAt: item.createdAt || 'Unknown Date',
+          sections: item.sections || [],  
+        }));
+
+        const webDesigning = webDesigningResponse.data.map(item => ({
+          id: item._id || '',
+          title: item.title || 'Untitled',
+          createdAt: item.createdAt || 'Unknown Date',
+          sections: item.sections || [],
+        }));
+
+        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine, ...socialContent, ...webDesigning];
         setData(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);

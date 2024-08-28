@@ -15,7 +15,6 @@ function Layout() {
     <>
       {!hideHeaderFooter && <Header />}
       <Outlet />
-
       {!hideHeaderFooter && <Footer />}
     </>
   );

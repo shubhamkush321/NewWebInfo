@@ -1,17 +1,20 @@
-// models/Services/WebDesign.js
 const mongoose = require('mongoose');
 
-const contentSchema = new mongoose.Schema({
-  heroImage: [String],
-  introduction: [String],
-  webDesign: [String],
-  competitiveAdvantage: {
-    title: String,
-    benefits: [String]
-  },
-  services: [String],
-  reasonsToChoose: [String]
-}, { timestamps: true });
+// Define the section schema
+const sectionSchema = new mongoose.Schema({
+  header: { type: String }, // Not required to handle cases without a header
+  description: [{ type: String }],
+  list: [{ type: String }]
+});
 
-const WebDesign = mongoose.model('WebDesign', contentSchema);
-module.exports = WebDesign;
+// Define the main schema
+const webDesigningSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  schemaName: { type: String, default: "WebDesigning" },
+  sections: [sectionSchema]
+});
+
+// Create the model
+const WebDesigning = mongoose.model('WebDesigning', webDesigningSchema);
+
+module.exports = WebDesigning;

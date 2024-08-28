@@ -23,13 +23,15 @@ const TopNav = () => {
   // Toggle notification dropdown
   const toggleNotificationDropdown = () => {
     setIsNotificationDropdownOpen(!isNotificationDropdownOpen);
-    setIsMessageDropdownOpen(false); // Close message dropdown if open
+    setIsMessageDropdownOpen(false); 
   };
 
   return (
-    <div className="w-full bg-blue-900 p-4">
-      <div className="flex justify-between items-center max-w-screen-lg mx-auto">
-        <h2 className="text-xl font-bold text-white">DASHBOARD / PAGES</h2>
+    <div className="w-screen bg-blue-900 p-4">
+      <div className="flex justify-between items-center">
+        <div className='flex ml-60'>
+        <h2 className="text-xl font-bold text-white ">DASHBOARD / PAGES</h2>
+        </div>
         {isAdminPage ? (
           <div className="flex items-center space-x-4">
             {/* Message Icon and Dropdown */}

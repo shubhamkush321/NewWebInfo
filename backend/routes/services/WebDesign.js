@@ -1,13 +1,21 @@
-// routes/services/WebDesign.js
+// routes/webDesigningRoutes.js
 const express = require('express');
 const router = express.Router();
-const webDesignController = require('../../controllers/Services/WebDesign');
+const webDesigningController = require('../../controllers/Services/WebDesign');
 
-// CRUD Routes
-router.post('/', webDesignController.createWebDesign); 
-router.get('/', webDesignController.getWebDesigns);
-router.get('/:id', webDesignController.getWebDesignById);
-router.put('/:id', webDesignController.updateWebDesign);
-router.delete('/:id', webDesignController.deleteWebDesign);
+// Create a new WebDesigning document
+router.post('/', webDesigningController.createWebDesigning);
+
+// Get all WebDesigning documents
+router.get('/', webDesigningController.getAllWebDesignings);
+
+// Get a single WebDesigning document by ID
+router.get('/:id', webDesigningController.getWebDesigningById);
+
+// Update a WebDesigning document by ID
+router.put('/:id', webDesigningController.updateWebDesigning);
+
+// Delete a WebDesigning document by ID
+router.delete('/:id', webDesigningController.deleteWebDesigning);
 
 module.exports = router;

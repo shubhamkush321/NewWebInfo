@@ -1,67 +1,62 @@
-// controllers/Services/WebDesign.js
-const WebDesign = require('../../models/Services/WebDesign');
+// controllers/webDesigningController.js
+const WebDesigning = require('../../models/Services/WebDesign');
 
-// Create WebDesign
-exports.createWebDesign = async (req, res) => {
-  console.log('Request body:', req.body); // Log to verify the received data
+// Create a new WebDesigning document
+exports.createWebDesigning = async (req, res) => {
   try {
-    const webDesign = new WebDesign(req.body);
-    const savedWebDesign = await webDesign.save(); 
-    res.status(201).json(savedWebDesign);
-  } catch (err) {
-    console.error('Error:', err.message);
-    res.status(500).json({ message: err.message });
+    const webDesigning = new WebDesigning(req.body);
+    await webDesigning.save();
+    res.status(201).json(webDesigning);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };
 
-// Get all WebDesigns
-exports.getWebDesigns = async (req, res) => {
+// Get all WebDesigning documents
+exports.getAllWebDesignings = async (req, res) => {
   try {
-    const webDesigns = await WebDesign.find();
-    res.status(200).json(webDesigns);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const webDesignings = await WebDesigning.find();
+    res.status(200).json(webDesignings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Get WebDesign by ID
-exports.getWebDesignById = async (req, res) => {
+// Get a single WebDesigning document by ID
+exports.getWebDesigningById = async (req, res) => {
   try {
-    const webDesign = await WebDesign.findById(req.params.id);
-    if (webDesign) {
-      res.status(200).json(webDesign);
-    } else {
-      res.status(404).json({ message: 'WebDesign not found' });
+    const webDesigning = await WebDesigning.findById(req.params.id);
+    if (!webDesigning) {
+      return res.status(404).json({ message: 'WebDesigning not found' });
     }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(200).json(webDesigning);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Update WebDesign by ID
-exports.updateWebDesign = async (req, res) => {
+// Update a WebDesigning document by ID
+exports.updateWebDesigning = async (req, res) => {
   try {
-    const webDesign = await WebDesign.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (webDesign) {
-      res.status(200).json(webDesign);
-    } else {
-      res.status(404).json({ message: 'WebDesign not found' });
+    const webDesigning = await WebDesigning.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!webDesigning) {
+      return res.status(404).json({ message: 'WebDesigning not found' });
     }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(200).json(webDesigning);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };
 
-// Delete WebDesign by ID
-exports.deleteWebDesign = async (req, res) => {
+// Delete a WebDesigning document by ID
+exports.deleteWebDesigning = async (req, res) => {
   try {
-    const webDesign = await WebDesign.findByIdAndDelete(req.params.id);
-    if (webDesign) {
-      res.status(200).json({ message: 'WebDesign deleted' });
-    } else {
-      res.status(404).json({ message: 'WebDesign not found' });
+    const webDesigning = await WebDesigning.findByIdAndDelete(req.params.id);
+    if (!webDesigning) {
+      return res.status(404).json({ message: 'WebDesigning not found' });
     }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(200).json({ message: 'WebDesigning deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

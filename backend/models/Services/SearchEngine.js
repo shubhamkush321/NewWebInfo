@@ -28,6 +28,9 @@ const searchEngineSchema = new mongoose.Schema({
     {
       question: { type: String, required: true },
       answer: { type: String, required: true }
+    },
+    {
+      timestamps: true // Automatically manage createdAt and updatedAt fields
     }
   ]
 });

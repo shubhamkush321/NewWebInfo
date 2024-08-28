@@ -83,7 +83,7 @@ app.use('/api/corporate-reputation', CorporateReputation);
 app.use('/api/celebrity-reputation', CelebrityReputationRoutes);
 app.use('/api/brand-reputation', BrandReputationRoutes);
 app.use('/api/digital-marketing', DigitalMarketingRoutes);
-app.use('/api/social-content', socialContentRoutes);
+app.use('/api/socialcontent', socialContentRoutes);
 app.use('/api/search-engine', searchEngineRoutes);
 app.use('/api/payper', payPerRoutes);
 app.use('/api/web-designing', webDesigningRoutes); 

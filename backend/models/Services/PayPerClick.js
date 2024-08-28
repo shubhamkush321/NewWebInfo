@@ -23,6 +23,7 @@ const payPerSchema = new Schema({
   title: { type: String, required: true },
   schemaName: { type: String, default: "PayPer" },
   sections: [sectionSchema]
+  
 });
 
 module.exports = mongoose.model('PayPer', payPerSchema);
