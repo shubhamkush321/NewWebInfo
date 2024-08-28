@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FaBell, FaEnvelope, FaUserCircle, FaChevronDown } from 'react-icons/fa';
 
 const TopNav = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMessageDropdownOpen, setIsMessageDropdownOpen] = useState(false);
   const [isNotificationDropdownOpen, setIsNotificationDropdownOpen] = useState(false);
@@ -24,6 +25,12 @@ const TopNav = () => {
   const toggleNotificationDropdown = () => {
     setIsNotificationDropdownOpen(!isNotificationDropdownOpen);
     setIsMessageDropdownOpen(false); 
+  };
+
+
+  const onLogoutHandler = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (
@@ -95,7 +102,7 @@ const TopNav = () => {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white text-gray-700 border border-gray-300 rounded-lg shadow-lg">
                   <button className="w-full text-left px-4 py-2 hover:bg-gray-100">Profile</button>
-                  <button className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                  <button onClick={onLogoutHandler} className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
                 </div>
               )}
             </div>

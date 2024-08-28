@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import SideNav from "./SideNav";
 import TopNav from "./TopNav";
@@ -12,14 +12,11 @@ const Admin = () => {
 
   useEffect(() => {
     if (!token) {
-      console.log("No token found, navigating to login");
+
       navigate("/login");
     }
-  }, [token, navigate]);
+  }, [token, navigate]); // Run this effect when `token` or `navigate` changes
 
-  if (!token) {
-    return null;
-  }
 
   return (
     <div className="flex">
