@@ -8,14 +8,20 @@ const Pages = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [editingItem, setEditingItem] = useState(null);
+  const [confirmationModel, setConfirmationModel] = useState(false);
+  const [removeData, setRemoveData] = useState({
+    id: "",
+    sections: [],
+    schemaName: ""
+  })
   const [formData, setFormData] = useState({
     title: '',
     sections: [],
   });
   const [loading, setLoading] = useState(true);
-  const [EditForm, setEditForm] = useState(
-    false
-  )
+  const [EditForm, setEditForm] = useState(false)
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,42 +94,6 @@ const Pages = () => {
     }
   };
 
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name.startsWith('sections[')) {
-      const sectionIndex = parseInt(name.match(/sections\[(\d+)\]/)[1]);
-      const field = name.replace(`sections[${sectionIndex}]`, '');
-      setFormData(prev => ({
-        ...prev,
-        sections: prev.sections.map((section, index) =>
-          index === sectionIndex ?
-            { ...section, [field]: value } :
-            section
-        ),
-      }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`${SERVERAPI}/api/items/${formData.id}`, formData);
-      setData(data.map(item => (item.id === formData.id ? formData : item)));
-      setEditingItem(null);
-    } catch (error) {
-      console.error('Error updating item:', error);
-    }
-  };
-
-  const filteredData = data.filter(item =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  console.log(data)
-
   const onEditHandler = async (updateData, schemaName) => {
     if (!updateData) {
       toast.warning("Please select correct data.");
@@ -155,6 +125,40 @@ const Pages = () => {
       console.log(error);
     }
   }
+
+  const onRemoveHandler = async () => {
+    const filterdData = removeData?.sections?.filter((item) => item?._id != removeData?.id);
+    try {
+      await axios.put(`${SERVERAPI}/api/updateBySchema`, {
+        schemaName: removeData?.schemaName,
+        updateData: filterdData
+      });
+      const completeUpdated = data?.map((item) => {
+        if (item?.schemaName === removeData?.schemaName) {
+          return { ...item, sections: filterdData }
+        }
+        else {
+          return item;
+        }
+      })
+      toast.success("Data removed successfully.");
+      setData(completeUpdated);
+    }
+    catch (error) {
+      toast.error("Something went wrong.");
+      console.log(error);
+    }
+    finally {
+      setRemoveData({ id: "", sections: [], schemaName: "" });
+      setConfirmationModel(false);
+      setEditForm(false);
+    }
+
+  }
+
+  const filteredData = data.filter(item =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="bg-white  item-center lg:p-4">
@@ -225,7 +229,14 @@ const Pages = () => {
                   </table>
                 )}
               </div>
-            </div> : <EditFormData onEditHandler={onEditHandler} formData={formData} />
+            </div> : <EditFormData
+              onEditHandler={onEditHandler}
+              formData={formData}
+              setRemoveData={setRemoveData}
+              onRemoveHandler={onRemoveHandler}
+              setConfirmationModel={setConfirmationModel}
+              confirmationModel={confirmationModel}
+            />
           }
         </>
       )}
