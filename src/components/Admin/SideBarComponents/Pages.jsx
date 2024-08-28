@@ -63,9 +63,21 @@ const Pages = () => {
             createdAt: item.createdAt || 'Unknown Date',
             sections: item.sections || [],
           }
-        })
+        });
 
-        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine];
+        // const socialContent = socialContentResponse.data.map((item) => {
+        //   return {
+        //     ...item,
+        //     id: item._id || '',
+        //     title: item.title || 'Untitled',
+        //     createdAt: item.createdAt || 'Unknown Date',
+        //     sections: item.sections || [],
+        //   }
+        // });
+        
+     
+
+        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine,];
         setData(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -232,7 +244,8 @@ const Pages = () => {
                   </table>
                 )}
               </div>
-            </div> : <EditFormData
+            </div> :
+             <EditFormData
               onEditHandler={onEditHandler}
               formData={formData}
               setRemoveData={setRemoveData}
