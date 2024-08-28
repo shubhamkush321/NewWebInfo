@@ -2,19 +2,26 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SERVERAPI } from '../../../common/common';
 import EditFormData from '../EditFormData';
+import { toast } from 'react-toastify';
 
 const Pages = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [editingItem, setEditingItem] = useState(null);
+  const [confirmationModel, setConfirmationModel] = useState(false);
+  const [removeData, setRemoveData] = useState({
+    id: "",
+    sections: [],
+    schemaName: ""
+  })
   const [formData, setFormData] = useState({
     title: '',
     sections: [],
   });
   const [loading, setLoading] = useState(true);
-  const [EditForm, setEditForm] = useState(
-    false
-  )
+  const [EditForm, setEditForm] = useState(false)
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,51 +36,36 @@ const Pages = () => {
           axios.get(`${SERVERAPI}/api/brand-reputation`),
         ]);
 
-        const digitalMarketingData = digitalMarketingResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
+        const digitalMarketingData = digitalMarketingResponse.data.map((item) => {
+          return {
+            ...item,
+            id: item._id || '',
+            title: item.title || 'Untitled',
+            createdAt: item.createdAt || 'Unknown Date',
+            sections: item.sections || [],
+          }
+        })
 
-        const payper = payperResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
+        const payper = payperResponse.data.map((item) => {
+          return {
+            ...item,
+            id: item._id || '',
+            title: item.title || 'Untitled',
+            createdAt: item.createdAt || 'Unknown Date',
+            sections: item.sections || [],
+          }
+        })
+        const searchEngine = searchEngineResponse.data.map((item) => {
+          return {
+            ...item,
+            id: item._id || '',
+            title: item.title || 'Untitled',
+            createdAt: item.createdAt || 'Unknown Date',
+            sections: item.sections || [],
+          }
+        })
 
-        const searchEngine = searchEngineResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
-
-        const socialContent = socialContentResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],  
-        }));
-
-        const webDesigning = webDesigningResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
-
-       const brandReputation = brandReputationResponse.data.map(item => ({
-          id: item._id || '',
-          title: item.title || 'Untitled',
-          createdAt: item.createdAt || 'Unknown Date',
-          sections: item.sections || [],
-        }));
-
-      
-
-        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine, ...socialContent, ...webDesigning, ...brandReputation];
+        const combinedData = [...digitalMarketingData, ...payper, ...searchEngine];
         setData(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -91,11 +83,7 @@ const Pages = () => {
   };
 
   const handleEditClick = (item) => {
-    setFormData({
-      title: item.title || '',
-      sections: item.sections || [],
-      // ... other fields
-    });
+    setFormData(item);
     setEditingItem(item);
     setEditForm(true);
   };
@@ -109,42 +97,74 @@ const Pages = () => {
     }
   };
 
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name.startsWith('sections[')) {
-      const sectionIndex = parseInt(name.match(/sections\[(\d+)\]/)[1]);
-      const field = name.replace(`sections[${sectionIndex}]`, '');
-      setFormData(prev => ({
-        ...prev,
-        sections: prev.sections.map((section, index) =>
-          index === sectionIndex ?
-            { ...section, [field]: value } :
-            section
-        ),
-      }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+  const onEditHandler = async (updateData, schemaName) => {
+    if (!updateData) {
+      toast.warning("Please select correct data.");
+      retrurn;
     }
-  };
+    if (!schemaName) {
+      toast.warning("Please select Schema name.");
+      retrurn;
+    }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
-      await axios.put(`${SERVERAPI}/api/items/${formData.id}`, formData);
-      setData(data.map(item => (item.id === formData.id ? formData : item)));
-      setEditingItem(null);
-    } catch (error) {
-      console.error('Error updating item:', error);
+      await axios.put(`${SERVERAPI}/api/updateBySchema`, {
+        schemaName: schemaName,
+        updateData: updateData
+      });
+      const completeUpdated = data?.map((item) => {
+        if (item?.schemaName === schemaName) {
+          return { ...item, sections: updateData }
+        }
+        else {
+          return item;
+        }
+      })
+      toast.success("Data updated successfully.");
+      setData(completeUpdated);
     }
-  };
+    catch (error) {
+      toast.error("Something went wrong.");
+      console.log(error);
+    }
+  }
+
+  const onRemoveHandler = async () => {
+    const filterdData = removeData?.sections?.filter((item) => item?._id != removeData?.id);
+    try {
+      await axios.put(`${SERVERAPI}/api/updateBySchema`, {
+        schemaName: removeData?.schemaName,
+        updateData: filterdData
+      });
+      const completeUpdated = data?.map((item) => {
+        if (item?.schemaName === removeData?.schemaName) {
+          return { ...item, sections: filterdData }
+        }
+        else {
+          return item;
+        }
+      })
+      toast.success("Data removed successfully.");
+      setData(completeUpdated);
+    }
+    catch (error) {
+      toast.error("Something went wrong.");
+      console.log(error);
+    }
+    finally {
+      setRemoveData({ id: "", sections: [], schemaName: "" });
+      setConfirmationModel(false);
+      setEditForm(false);
+    }
+
+  }
 
   const filteredData = data.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div className="bg-white w-full max-w-screen-lg mx-auto lg:p-4 mr-10">
+    <div className="bg-white  item-center lg:p-4">
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -212,7 +232,14 @@ const Pages = () => {
                   </table>
                 )}
               </div>
-            </div> : <EditFormData formData={formData} />
+            </div> : <EditFormData
+              onEditHandler={onEditHandler}
+              formData={formData}
+              setRemoveData={setRemoveData}
+              onRemoveHandler={onRemoveHandler}
+              setConfirmationModel={setConfirmationModel}
+              confirmationModel={confirmationModel}
+            />
           }
         </>
       )}

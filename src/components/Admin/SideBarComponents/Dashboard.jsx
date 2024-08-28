@@ -56,39 +56,41 @@ const barOptions = {
   },
 };
 
-const Dashboard = () => (
-  <div className="flex flex-col mr-4 max-w-6xl mx-auto">
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 ml-20">
-      {/* Dashboard Cards */}
-      <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-5 flex flex-col items-center">
-        <h3 className="text-lg font-semibold mb-2">Total Sales</h3>
-        <p className="text-2xl font-bold text-gray-700">$45,000</p>
-      </div>
-      <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-        <h3 className="text-lg font-semibold mb-2">New Orders</h3>
-        <p className="text-2xl font-bold text-gray-700">120</p>
-      </div>
-      <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-        <h3 className="text-lg font-semibold mb-2">Revenue</h3>
-        <p className="text-2xl font-bold text-gray-700">$12,000</p>
-      </div>
-    </div>
-    {/* Charts */}
-    <div className="flex gap-4 p-12  ml-8 -mt-16">
-      <div className="bg-white shadow-md rounded-lg p-4 flex-1">
-        <h3 className="text-lg font-semibold mb-2">Sales Overview</h3>
-        <div className="h-64">
-          <Line data={lineData} options={lineOptions} />
+const Dashboard = () => {
+  return (
+    <div className="flex flex-col flex-1 p-4 overflow-y-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        {/* Dashboard Cards */}
+        <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
+          <h3 className="text-lg font-semibold mb-2">Total Sales</h3>
+          <p className="text-2xl font-bold text-gray-700">$45,000</p>
+        </div>
+        <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
+          <h3 className="text-lg font-semibold mb-2">New Orders</h3>
+          <p className="text-2xl font-bold text-gray-700">120</p>
+        </div>
+        <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
+          <h3 className="text-lg font-semibold mb-2">Revenue</h3>
+          <p className="text-2xl font-bold text-gray-700">$12,000</p>
         </div>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-4 flex-1">
-        <h3 className="text-lg font-semibold mb-2">Expenses Overview</h3>
-        <div className="h-64">
-          <Bar data={barData} options={barOptions} />
+      {/* Charts */}
+      <div className="flex gap-4">
+        <div className="bg-white shadow-md rounded-lg p-4 flex-1">
+          <h3 className="text-lg font-semibold mb-2">Sales Overview</h3>
+          <div className="h-64"> {/* Adjust the height here */}
+            <Line data={lineData} options={lineOptions} />
+          </div>
+        </div>
+        <div className="bg-white shadow-md rounded-lg p-4 flex-1">
+          <h3 className="text-lg font-semibold mb-2">Expenses Overview</h3>
+          <div className="h-64"> {/* Adjust the height here */}
+            <Bar data={barData} options={barOptions} />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Dashboard;

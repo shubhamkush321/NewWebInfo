@@ -12,18 +12,16 @@ const Admin = () => {
 
   useEffect(() => {
     if (!token) {
-
       navigate("/login");
     }
-  }, [token, navigate]); 
-
+  }, [token, navigate]);
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <SideNav />
       <div className="flex-1 flex flex-col">
         <TopNav />
-        <div className="flex-1 min-x-60 w-screen p-4">
+        <div className="ml-80">
           {isDashboard && <Dashboard />}
           <Outlet />
         </div>

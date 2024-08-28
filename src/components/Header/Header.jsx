@@ -56,8 +56,7 @@ export default function Header() {
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
-                      `block py-1 pr-2 pl-1 duration-200 ${
-                        isActive ? "text-white" : "text-white"
+                      `block py-1 pr-2 pl-1 duration-200 ${isActive ? "text-white" : "text-white"
                       } border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:p-0 `
                     }
                   >
@@ -72,8 +71,7 @@ export default function Header() {
                   <NavLink
                     to="#"
                     className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${
-                        isActive ? "text-white" : "text-white-700"
+                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${isActive ? "text-white" : "text-white-700"
                       } lg:p-0`
                     }
                     onClick={() => handleDropdownToggle(1)}
@@ -192,8 +190,7 @@ export default function Header() {
                   <NavLink
                     to="#"
                     className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${
-                        isActive ? "text-white" : "text-gray-700"
+                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${isActive ? "text-white" : "text-gray-700"
                       } lg:p-0`
                     }
                     onClick={() => handleDropdownToggle(2)}
@@ -288,8 +285,7 @@ export default function Header() {
                   <NavLink
                     to="#"
                     className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${
-                        isActive ? "text-white" : "text-gray-700"
+                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${isActive ? "text-white" : "text-gray-700"
                       } lg:p-0`
                     }
                     onClick={() => handleDropdownToggle(3)}
@@ -426,8 +422,7 @@ export default function Header() {
                   <NavLink
                     to="#"
                     className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${
-                        isActive ? "text-white" : "text-gray-700"
+                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${isActive ? "text-white" : "text-gray-700"
                       } lg:p-0`
                     }
                     onClick={() => handleDropdownToggle(4)}
@@ -529,8 +524,7 @@ export default function Header() {
                   <NavLink
                     to="#"
                     className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 text-gray-700 ${
-                        isActive ? "text-white" : "text-gray-700"
+                      `block py-2 pr-4 pl-3 duration-200 text-gray-700 ${isActive ? "text-white" : "text-gray-700"
                       } lg:p-0`
                     }
                     onClick={() => handleDropdownToggle(5)}
@@ -632,23 +626,21 @@ export default function Header() {
                   <NavLink
                     to="#"
                     className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${
-                        isActive ? "text-white" : "text-gray-700"
+                      `block py-2 pr-4 pl-3 duration-200 text-gray-700  ${isActive ? "text-white" : "text-gray-700"
                       } lg:p-0`
                     }
                     onClick={() => handleDropdownToggle(6)}
                   >
                     CONTACT
-                  </NavLink>        
+                  </NavLink>
                 </li>
               </ul>
             </div>
 
             {/* Mobile Navigation menu */}
             <div
-              className={`lg:hidden fixed top-0 left-0 w-full h-full bg-blue-950 z-50 transform ${
-                mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-              } transition-transform duration-300 ease-in-out`}
+              className={`lg:hidden fixed top-0 left-0 w-full h-full bg-blue-950 z-50 transform ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                } transition-transform duration-300 ease-in-out`}
             >
               <div className="flex flex-col mt-8 p-6">
                 <button
@@ -663,8 +655,7 @@ export default function Header() {
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
-                        `block py-2 p-6 duration-200 ${
-                          isActive ? "text-white" : "text-gray-700"
+                        `block py-2 p-6 duration-200 ${isActive ? "text-white" : "text-gray-700"
                         } border-b border-gray-100 `
                       }
                       onClick={() => setMobileMenuOpen(false)}
@@ -1092,7 +1083,7 @@ export default function Header() {
                       className="block py-2 p-6 duration-200 text-gray-700  w-full text-left"
                     >
                       CONTACT
-                    </button>   
+                    </button>
                   </li>
                 </ul>
               </div>
