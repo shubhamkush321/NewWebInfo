@@ -18,7 +18,7 @@ const TopNav = () => {
   // Toggle message dropdown
   const toggleMessageDropdown = () => {
     setIsMessageDropdownOpen(!isMessageDropdownOpen);
-    setIsNotificationDropdownOpen(false); // Close notification dropdown if open
+    setIsNotificationDropdownOpen(false); 
   };
 
   // Toggle notification dropdown

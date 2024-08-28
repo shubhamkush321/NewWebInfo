@@ -15,7 +15,7 @@ const Admin = () => {
 
       navigate("/login");
     }
-  }, [token, navigate]); // Run this effect when `token` or `navigate` changes
+  }, [token, navigate]); 
 
 
   return (

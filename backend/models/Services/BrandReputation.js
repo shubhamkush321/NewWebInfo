@@ -1,21 +1,28 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const sectionSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  content: [String],
-  list: [String],
-  links: [
+// Define the schema for Brand Reputation data
+const brandReputationSchema = new Schema({
+  schemaName: {
+    type: String,
+    required: true
+  },
+  sections: [
     {
-      text: { type: String },
-      url: { type: String },
-    },
-  ],
+      header: {
+        type: String,
+        required: true
+      },
+      description: [String],
+      links: [String],
+      services: [String],
+      locations: [String],
+      list: [String]
+    }
+  ]
 });
 
-const brandReputationSchema = new mongoose.Schema({
-  sections: [sectionSchema],
-});
-
+// Create the model
 const BrandReputation = mongoose.model('BrandReputation', brandReputationSchema);
 
 module.exports = BrandReputation;

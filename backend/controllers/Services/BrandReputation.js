@@ -1,73 +1,61 @@
 const BrandReputation = require('../../models/Services/BrandReputation');
 
-// Create
-const createBrandReputation = async (req, res) => {
+// Create a new Brand Reputation document
+exports.createBrandReputation = async (req, res) => {
   try {
-    const data = new BrandReputation(req.body);
-    const savedData = await data.save();
-    res.status(201).json(savedData);
+    const brandReputation = new BrandReputation(req.body);
+    await brandReputation.save();
+    res.status(201).json(brandReputation);
   } catch (error) {
-    console.error('Error saving data:', error); 
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Read All
-const getAllBrandReputations = async (req, res) => {
+// Get all Brand Reputation documents
+exports.getAllBrandReputations = async (req, res) => {
   try {
-    const data = await BrandReputation.find();
-    res.status(200).json(data);
+    const brandReputations = await BrandReputation.find();
+    res.status(200).json(brandReputations);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Read One by ID
-const getBrandReputationById = async (req, res) => {
+// Get a single Brand Reputation document by ID
+exports.getBrandReputationById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const data = await BrandReputation.findById(id);
-    if (!data) {
-      return res.status(404).json({ message: 'Data not found' });
+    const brandReputation = await BrandReputation.findById(req.params.id);
+    if (!brandReputation) {
+      return res.status(404).json({ error: 'Brand Reputation not found' });
     }
-    res.status(200).json(data);
+    res.status(200).json(brandReputation);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Update
-const updateBrandReputation = async (req, res) => {
+// Update a Brand Reputation document by ID
+exports.updateBrandReputation = async (req, res) => {
   try {
-    const { id } = req.params;
-    const updatedData = await BrandReputation.findByIdAndUpdate(id, req.body, { new: true });
-    if (!updatedData) {
-      return res.status(404).json({ message: 'Data not found' });
+    const brandReputation = await BrandReputation.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!brandReputation) {
+      return res.status(404).json({ error: 'Brand Reputation not found' });
     }
-    res.status(200).json(updatedData);
+    res.status(200).json(brandReputation);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Delete
-const deleteBrandReputation = async (req, res) => {
+// Delete a Brand Reputation document by ID
+exports.deleteBrandReputation = async (req, res) => {
   try {
-    const { id } = req.params;
-    const result = await BrandReputation.findByIdAndDelete(id);
-    if (!result) {
-      return res.status(404).json({ message: 'Data not found' });
+    const brandReputation = await BrandReputation.findByIdAndDelete(req.params.id);
+    if (!brandReputation) {
+      return res.status(404).json({ error: 'Brand Reputation not found' });
     }
-    res.status(200).json({ message: 'Data deleted successfully' });
+    res.status(200).json({ message: 'Brand Reputation deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ error: error.message });
   }
-};
-
-module.exports = {
-  createBrandReputation,
-  getAllBrandReputations,
-  getBrandReputationById,
-  updateBrandReputation,
-  deleteBrandReputation,
 };
