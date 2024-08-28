@@ -30,13 +30,34 @@ const mainSchema = new Schema({
 });
 items: [
   {
-    type: OnlineReputation
+    type: Digital Marketing Services
   },
   {
-    type: PhpDevelopment
+    type: Search Engine Optimization
   },
   {
-    type: DigitalMarketing
+    type: Social Media Marketing
+  },
+  {
+    type: Pay Per Click Marketing
+  },
+  {
+    type: Brand Reputation Management
+  },
+  {
+    type: Celebrity Reputation Management
+  },
+  {
+    type: Corprate Reputation Management
+  },
+  {
+    type: Online Reputation Management
+  },
+  {
+    type: Web Design Services
+  },
+  {
+    type: Website Development Services
   }
 ]
 
@@ -47,7 +68,3 @@ module.exports = {
   MainModel
 };
 
-
-// Git hub repo change new and make colabroto
-// models\Main.js
-// models change and add contoller
