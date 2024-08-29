@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SERVERAPI } from '../../../common/common';
-import EditFormData from '../EditFormData';
+import Form from '../Form';
 import { toast } from 'react-toastify';
 
 const Pages = () => {
@@ -27,13 +27,10 @@ const Pages = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [digitalMarketingResponse, payperResponse, searchEngineResponse, socialContentResponse, webDesigningResponse, brandReputationResponse] = await Promise.all([
+        const [digitalMarketingResponse, payperResponse, searchEngineResponse, ] = await Promise.all([
           axios.get(`${SERVERAPI}/api/digital-marketing`),
           axios.get(`${SERVERAPI}/api/payper`),
           axios.get(`${SERVERAPI}/api/search-engine`),
-          axios.get(`${SERVERAPI}/api/socialcontent`),
-          axios.get(`${SERVERAPI}/api/web-designing`),
-          axios.get(`${SERVERAPI}/api/brand-reputation`),
         ]);
 
         const digitalMarketingData = digitalMarketingResponse.data.map((item) => {
@@ -64,18 +61,6 @@ const Pages = () => {
             sections: item.sections || [],
           }
         });
-
-        // const socialContent = socialContentResponse.data.map((item) => {
-        //   return {
-        //     ...item,
-        //     id: item._id || '',
-        //     title: item.title || 'Untitled',
-        //     createdAt: item.createdAt || 'Unknown Date',
-        //     sections: item.sections || [],
-        //   }
-        // });
-        
-     
 
         const combinedData = [...digitalMarketingData, ...payper, ...searchEngine,];
         setData(combinedData);
@@ -245,14 +230,7 @@ const Pages = () => {
                 )}
               </div>
             </div> :
-             <EditFormData
-              onEditHandler={onEditHandler}
-              formData={formData}
-              setRemoveData={setRemoveData}
-              onRemoveHandler={onRemoveHandler}
-              setConfirmationModel={setConfirmationModel}
-              confirmationModel={confirmationModel}
-            />
+            <Form/>
           }
         </>
       )}
