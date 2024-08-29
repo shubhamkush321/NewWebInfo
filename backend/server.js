@@ -21,11 +21,6 @@ const authRoutes = require('./routes/Auth/authRoutes');
 app.use('/api', authRoutes);
 
 
-
-//updateBySchema
-app.use('/api/updateBySchema', require("./routes/updateBySchema/updateBySchemaRoutes"));
-
-
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
