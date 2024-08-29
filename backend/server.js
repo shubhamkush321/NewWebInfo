@@ -18,7 +18,9 @@ app.use(cors({
 
 //Auth
 const authRoutes = require('./routes/Auth/authRoutes');
+const mainRoutes = require("./routes/MainRoutes");
 app.use('/api', authRoutes);
+app.use('/api', mainRoutes);
 
 
 // Error handling middleware
