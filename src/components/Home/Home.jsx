@@ -103,7 +103,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div id="main" className="-mt-96">
+    <div id="main">
       <div id="back">
         <img src={Home1} alt="Home 1" />
         <img src={Home2} alt="Home 2" />
@@ -114,7 +114,7 @@ const Home = () => {
       <div id="workingarea">
         <div id="hero">
           <div id="heroleft">
-            <div class="elem">
+            <div className="elem">
               <h1>We Are Professional</h1>
               <h1>Gojo Satoru</h1>
               <h1>Gojo Satoru</h1>

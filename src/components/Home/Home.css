@@ -12,7 +12,7 @@ html,body{
 
 #main{
   width: 100%;
-  height: 90vh;  
+  height: 100vh;  
 }
 
 #back{
@@ -23,6 +23,7 @@ html,body{
   width: 100%;
   height: 100%;
   background-size: cover;
+  margin-top: 4rem;
 }
 
 #top{
@@ -83,7 +84,6 @@ html,body{
 
 #hero{
   position: absolute;
-  top: 50%;
   left: 0;
   display: flex;
   transform: translate(0%, -50%);
@@ -97,7 +97,7 @@ html,body{
 
 #heroleft .elem {
   position: relative;
-  height: 9vw;
+  height: 4vw;
   overflow: hidden;
 }
 #heroleft .elem h1:nth-child(1) {
@@ -106,7 +106,7 @@ top: 0;
 
 #heroleft .elem h1 {
   position: absolute;
-  top:100%;
+  top:-3vw;
   left: 0;
   line-height: .9;
   font-family: "kajiro";
