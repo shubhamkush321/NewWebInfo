@@ -30,8 +30,8 @@ function Layout() {
         theme="light"
       />
       {/* Same as */}
-      <ToastContainer />
-      {!hideHeaderFooter && <Footer />}
+      {/* <ToastContainer />
+      {!hideHeaderFooter && <Footer />} */}
     </>
   );
 }

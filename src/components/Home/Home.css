@@ -2,8 +2,7 @@
 *{
   margin:0;
   padding: 0;
-  box-sizing: border-box;
-  
+  box-sizing: border-box; 
 }
 
 html,body{
@@ -13,12 +12,12 @@ html,body{
 
 #main{
   width: 100%;
-  height:100vh;  
+  height: 90vh;  
 }
 
 #back{
   width: 100%;
-  height:100vh;
+  height: 100vh;
 }
 #back img{
   width: 100%;
@@ -116,9 +115,9 @@ top: 0;
   left: 0;
   line-height: .9;
   font-family: "kajiro";
-  color: white;
+  color: rgb(245, 17, 17);
   font-weight: 100;
-  font-size: 11vw;
+  font-size: 4vw;
 }
 #heroleft button {
   pointer-events: all;
