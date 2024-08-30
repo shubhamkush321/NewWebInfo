@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Home from "./components/Home/Home.jsx";
+
+//Services
 import DigitalMarketing from "./components/Header/pages/services/DigitalMarketing.jsx";
 import BrandReputation from "./components/Header/pages/services/OnlineReputation/BrandReputations.jsx";
 import CelebrityReputation from "./components/Header/pages/services/OnlineReputation/CelebrityReputation.jsx";
@@ -16,9 +18,10 @@ import CorporateReputation from "./components/Header/pages/services/OnlineReputa
 import OnlineReputation from "./components/Header/pages/services/OnlineReputation/OnlineReputation.jsx";
 import PayPer from "./components/Header/pages/services/PayPer.jsx";
 import SearchEngine from "./components/Header/pages/services/SearchEngine.jsx";
-import Social from "./components/Header/pages/services/SocialContent.jsx";
+import SocialMedia from "./components/Header/pages/services/SocialMedia.jsx";
 import WebDesigning from "./components/Header/pages/services/WebDesigning.jsx";
 import WebsiteDevelopment from "./components/Header/pages/services/WebsiteDevelopment.jsx";
+
 //Seo
 import EnterPrise from "./components/Header/pages/Seo/EnterPrise.jsx";
 import Local from "./components/Header/pages/Seo/Local.jsx";
@@ -29,8 +32,8 @@ import Technical from "./components/Header/pages/Seo/Technical.jsx";
 import SeoAudit from "./components/Header/pages/Seo/SeoAudit.jsx";
 import SmallBusiness from "./components/Header/pages/Seo/SmallBusiness.jsx";
 import Video from "./components/Header/pages/Seo/Video.jsx";
+
 //Design and development
-// import ECommerceWebSiteDesign from "./components/Header/pages/DesignDevelopment/ECommerceWebsite.jsx";
 import ECommerceWebSiteDesign from "./components/Header/pages/DesignDevelopment/ECommerceWebsite.jsx";
 import FlashAnimation from "./components/Header/pages/DesignDevelopment/FlashAnimation.jsx";
 import Multimedia from "./components/Header/pages/DesignDevelopment/Multimedia.jsx";
@@ -41,6 +44,7 @@ import PHPDevelopment from "./components/Header/pages/DesignDevelopment/PhpDevel
 import LaravelDevelopment from "./components/Header/pages/DesignDevelopment/LaravelDevelopment.jsx";
 import MagentoDevelopment from "./components/Header/pages/DesignDevelopment/MagentoDevelopment.jsx";
 import GraphicDesign from "./components/Header/pages/DesignDevelopment/GraphicDesign.jsx";
+
 // Industries
 import AccountingFirms from "./components/Header/pages/Industries/Accounting.jsx";
 import IndustriesECommerce from "./components/Header/pages/Industries/IndustriesECommerce.jsx";
@@ -52,6 +56,7 @@ import RealEstate from "./components/Header/pages/Industries/RealEstate.jsx";
 import Manufacturing from "./components/Header/pages/Industries/Manufacturing.jsx";
 import MediaEntertainment from "./components/Header/pages/Industries/MediaEntertainment.jsx";
 import OnlineCourses from "./components/Header/pages/Industries/OnlineCourses.jsx";
+
 // ECommerce-Marketing
 import ECommerceOptimization from "./components/Header/pages/ECommerce/ECommerceOp.jsx";
 import ECommerceSEO from "./components/Header/pages/ECommerce/ECommerceSeo.jsx";
@@ -90,7 +95,7 @@ const router = createBrowserRouter(
       <Route path="/Online-Reputation" element={<OnlineReputation />} />
       <Route path="/Pay-Per" element={<PayPer />} />
       <Route path="/Search-Engine" element={<SearchEngine />} />
-      <Route path="/Social-Media" element={<Social />} />
+      <Route path="/Social-Media" element={<SocialMedia />} />
       <Route path="/Web-Designing" element={<WebDesigning />} />
       <Route path="/Website-Development" element={<WebsiteDevelopment />} />
       {/* Seo */}
