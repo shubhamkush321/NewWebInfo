@@ -1,8 +1,8 @@
-const { MainModel } = require('../models/Main'); 
+const { MainModel } = require('../models/Main');
 
 const createMainDocument = async (req, res) => {
   try {
-    const {items} = req.body;
+    const { items } = req.body;
     if (!items) {
       return res.status(400).json({ error: 'Invalid data: "items" should be an array.' });
     }
@@ -13,6 +13,7 @@ const createMainDocument = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 const getAllDocuments = async (req, res) => {
   try {
@@ -25,5 +26,5 @@ const getAllDocuments = async (req, res) => {
 
 module.exports = {
   createMainDocument,
-  getAllDocuments
+  getAllDocuments,
 };
