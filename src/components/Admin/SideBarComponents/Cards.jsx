@@ -1,9 +1,10 @@
 import React from "react";
-
+import BackButton from "../../Admin/SideBarComponents/BackButton";
 const Cards = () => {
   return (
-    <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">  
+    <div className="">  
 cards
+   <BackButton/>
     </div>
   );
 };

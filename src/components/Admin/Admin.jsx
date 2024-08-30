@@ -6,7 +6,7 @@ import Dashboard from "./SideBarComponents/Dashboard";
 
 const Admin = () => {
   const location = useLocation();
-  const isDashboard = ["/admin", "/admin/"].includes(location.pathname);
+  const isDashboard = location.pathname === '/admin';
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -19,11 +19,10 @@ const Admin = () => {
   return (
     <div className="flex w-full">
       <SideNav />
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-col flex-1">
         <TopNav />
-        <div className="ml-80">
-          {isDashboard && <Dashboard />}
-          <Outlet />
+        <div className="ml-60">
+          {isDashboard ? <Dashboard /> : <Outlet />}
         </div>
       </div>
     </div>
