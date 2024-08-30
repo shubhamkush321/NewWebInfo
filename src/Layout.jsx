@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { InfoProvider } from "./components/context/InfoContext";
 
 function Layout() {
   const location = useLocation();
@@ -14,7 +15,7 @@ function Layout() {
     path.startsWith("/login");
 
   return (
-    <>
+    <InfoProvider>
       {!hideHeaderFooter && <Header />}
       <Outlet />
       <ToastContainer
@@ -30,9 +31,9 @@ function Layout() {
         theme="light"
       />
       {/* Same as */}
-      {/* <ToastContainer />
-      {!hideHeaderFooter && <Footer />} */}
-    </>
+      <ToastContainer />
+      {!hideHeaderFooter && <Footer />}
+    </InfoProvider>
   );
 }
 

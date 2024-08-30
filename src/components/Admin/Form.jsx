@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo } from 'react';
 import { FaImage, FaLink } from 'react-icons/fa';
 import JoditEditor from 'jodit-react';
 
-const Form = ({ id }) => {
+const Form = ({ setFormData, formData }) => {
   const [name, setName] = useState('');
   const [permalink, setPermalink] = useState('');
   const [description, setDescription] = useState('');
@@ -20,9 +20,10 @@ const Form = ({ id }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Logic to handle form submission
   };
-  
+
+  console.log(formData)
+
 
   return (
     <div className="flex gap-4 p-36 -mt-20 ml-14">
@@ -92,7 +93,7 @@ const Form = ({ id }) => {
             value={content}
             onChange={handleContentChange}
             config={{
-              readonly: false, 
+              readonly: false,
             }}
             className="border rounded-md"
           />
@@ -106,7 +107,7 @@ const Form = ({ id }) => {
           </div>
           <div className="mb-4">
             <h3 className="text-xl font-semibold mb-2">Refund Policy | Web Infomatrix - Transparent and Client-Focused Service</h3>
-           
+
             <p className="text-gray-700 mt-2">
               Dec 29, 2023 - Learn about Web Infomatrix's transparent refund policy, designed to protect your investment and ensure
               satisfaction with our web development, SEO, SEM, and SMO services.
@@ -172,7 +173,7 @@ const Form = ({ id }) => {
               className={`flex items-center px-4 py-2 text-gray-700 rounded-md hover:bg-gray-200 ${isChoosingImage ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
               onClick={() => setIsChoosingImage(true)}
             >
-              <FaImage className='w-20 h-20'/> 
+              <FaImage className='w-20 h-20' />
             </button>
             <button
               type="button"
