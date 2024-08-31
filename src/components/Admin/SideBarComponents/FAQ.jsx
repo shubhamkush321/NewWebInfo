@@ -1,43 +1,59 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import { SERVERAPI } from '../../../../common/common';
-import Form from './FAQs';
-import { InfoContext } from "../../../context/InfoContext";
-import BackButton from "../../../Admin/SideBarComponents/BackButton";
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { SERVERAPI } from "../../../common/common";
+import Form from "../FAQForm";
+import { InfoContext } from "../../context/InfoContext";
+import BackButton from "./BackButton";
 
 const FAQ = () => {
   const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [confirmationModel, setConfirmationModel] = useState(false);
   const { infoDetails, setInfoDetails } = useContext(InfoContext);
-  const [formData, setFormData] = useState();
-  const [loading, setLoading] = useState(false);
+  const [FAQData, setFAQData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [EditForm, setEditForm] = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${SERVERAPI}/api/items`);
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleSearch = () => {
-    console.log('Searching for:', searchTerm);
+    console.log("Searching for:", searchTerm);
   };
 
   const handleEditClick = (item) => {
-    setFormData(item);
+    setFAQData(item);
     setEditForm(true);
   };
 
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`${SERVERAPI}/api/items/${id}`);
-      setData(data.filter(item => item.id !== id));
+      setData(data.filter((item) => item.id !== id));
     } catch (error) {
-      console.error('Error deleting item:', error);
+      console.error("Error deleting item:", error);
     }
   };
 
   const handleCancelEdit = () => {
     setEditForm(false);
+    setFAQData(null);
   };
 
   // Filter data based on the search term
-  const filteredInfoDetails = infoDetails.filter(item =>
+  const filteredInfoDetails = infoDetails.filter((item) =>
     item?.items[0]?.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -76,17 +92,32 @@ const FAQ = () => {
                       <tr className="bg-blue-300">
                         <th className="border text-blue-900 px-4 py-2">SN</th>
                         <th className="border text-blue-900 px-4 py-2">Name</th>
-                        <th className="border text-blue-900 px-4 py-2">Created At</th>
-                        <th className="border text-blue-900 px-4 py-2">Status</th>
-                        <th className="border text-blue-900 px-4 py-2">Operations</th>
+                        <th className="border text-blue-900 px-4 py-2">
+                          Created At
+                        </th>
+                        <th className="border text-blue-900 px-4 py-2">
+                          Status
+                        </th>
+                        <th className="border text-blue-900 px-4 py-2">
+                          Operations
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredInfoDetails.map((item, i) => (
-                        <tr key={item.id} className="text-center transition duration-100 hover:bg-blue-50">
-                          <td className="border px-4 py-2 text-blue-900">{i + 1}</td>
-                          <td className="border px-4 py-2 text-gray-900">{item?.items[0].title || 'No Title'}</td>
-                          <td className="border px-4 py-2 text-gray-900">{item.createdAt || 'No Date'}</td>
+                        <tr
+                          key={item.id}
+                          className="text-center transition duration-100 hover:bg-blue-50"
+                        >
+                          <td className="border px-4 py-2 text-blue-900">
+                            {i + 1}
+                          </td>
+                          <td className="border px-4 py-2 text-gray-900">
+                            {item?.items[0].title || "No Title"}
+                          </td>
+                          <td className="border px-4 py-2 text-gray-900">
+                            {item.createdAt || "No Date"}
+                          </td>
                           <td className="border px-4 py-2">
                             <span className="bg-green-300 text-green-800 px-2 py-1 rounded">
                               Published
@@ -115,8 +146,8 @@ const FAQ = () => {
             </div>
           ) : (
             <>
-             <BackButton/>
-              <Form setFormData={setFormData} formData={formData} />
+              <BackButton onClick={handleCancelEdit} />
+              <Form formData={FAQData} setFormData={setFAQData} />
             </>
           )}
         </>

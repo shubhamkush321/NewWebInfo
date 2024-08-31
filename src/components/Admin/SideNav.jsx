@@ -14,7 +14,7 @@ const navItems = [
   { to: '/admin/blog', icon: <RiNewspaperFill />, label: 'Blog' },
   { to: '/admin/DigitalCards', icon: <RiUserLine />, label: 'DigitalCards' },
   { to: '/admin/Testimonials', icon: <RiUserLine />, label: 'Testimonials' },
-  { to: '/admin/FAQs', icon: <RiNewspaperLine />, label: 'FAQs' },
+  { to: '/admin/FAQ', icon: <RiNewspaperLine />, label: 'FAQ' },
   { to: '/admin/Cards', icon: <RiMailLine />, label: 'Cards' },
 ];
 

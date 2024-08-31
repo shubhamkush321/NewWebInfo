@@ -73,7 +73,7 @@ import AmazonPostMange from "./components/Header/pages/ECommerce/AmazonPost.jsx"
 import Admin from "./components/Admin/Admin.jsx";
 import Pages from "./components/Admin/SideBarComponents/Pages.jsx";
 import Blog from "./components/Admin/SideBarComponents/Blog.jsx";
-import FAQs from "./components/Admin/SideBarComponents/FAQ/FAQ.jsx";
+import FAQ from "./components/Admin/SideBarComponents/FAQ.jsx";
 import DigitalCards from "./components/Admin/SideBarComponents/DigitalCards.jsx";
 import Testimonials from "./components/Admin/SideBarComponents/Testimonials.jsx";
 import Dashboard from "./components/Admin/SideBarComponents/Dashboard.jsx";
@@ -81,7 +81,6 @@ import Cards from "./components/Admin/SideBarComponents/Cards.jsx";
 
 import Login from "./components/Auth/Login.jsx";
 import Navigate from "./components/Auth/Navigate.jsx";
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -156,7 +155,7 @@ const router = createBrowserRouter(
         <Route path="blog" element={<Blog />} />
         <Route path="DigitalCards" element={<DigitalCards />} />
         <Route path="Dashboard" element={<Dashboard />} />
-        <Route path="FAQs" element={<FAQs />} />
+        <Route path="FAQ" element={<FAQ />} />
         <Route path="Pages" element={<Pages />} />
         <Route path="Testimonials" element={<Testimonials />} />
         <Route path="Cards" element={<Cards />} />
