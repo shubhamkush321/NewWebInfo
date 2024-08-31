@@ -26,7 +26,7 @@ const Form = ({ setFormData, formData }) => {
     <div className="flex flex-1 min-h-screen p-6">
       
       {/* Main form section */}
-      <form onSubmit={handleFormSubmit} className="w-full max-w-3xl mx-auto bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg shadow-lg">
+      <form onSubmit={handleFormSubmit} className="w-full max-w-6xl mx-auto bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-6 text-gray-900">Edit Form</h1>
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold mb-2" htmlFor="name">
@@ -168,7 +168,7 @@ const Form = ({ setFormData, formData }) => {
               className={`flex items-center px-4 text-gray-700 rounded-md hover:bg-gray-200 ${isChoosingImage ? ' text-white' : 'bg-gray-100'}`}
               onClick={() => setIsChoosingImage(true)}
             >
-              <FaImage className='w-20 h-20' />
+              <FaImage className='w-20 h-20 text-gray-500' />
             </button>
             <button
               type="button"

@@ -1,10 +1,10 @@
-/* .panda {
+/* #panda {
   position: relative;
   width: 180px;
   margin: 50px auto;
 }
 
-.face {
+#face {
   width: 200px;
   height: 200px;
   background: #fff;
@@ -15,8 +15,8 @@
   position: relative;
 }
 
-.ear,
-.ear:after {
+#ear, 
+#ear:after {
   position: absolute;
   width: 80px;
   height: 80px;
@@ -28,12 +28,12 @@
   border-radius: 100%;
 }
 
-.ear:after {
+#ear:after {
   content: '';
   left: 125px;
 }
 
-.eye-shade {
+#eye-shade {
   background: #000;
   width: 50px;
   height: 80px;
@@ -45,12 +45,12 @@
   border-radius: 25px/20px 30px 35px 40px;
 }
 
-.eye-shade.rgt {
+#eye-shade.rgt {
   transform: rotate(140deg);
   left: 105px;
 }
 
-.eye-white {
+#eye-white {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -61,13 +61,12 @@
   top: 80px;
   overflow: hidden;
 }
-
-.eye-white.rgt {
+#eye-white.rgt {
   right: 40px;
   left: auto;
 }
 
-.eye-ball {
+#eye-ball {
   position: absolute;
   width: 0px;
   height: 0px;
@@ -78,7 +77,7 @@
   transition: 0.1s;
 }
 
-.eye-ball:after {
+#eye-ball:after {
   content: '';
   background: #000;
   position: absolute;
@@ -89,7 +88,7 @@
   height: 20px;
 }
 
-.nose {
+#nose {
   position: absolute;
   height: 25px;
   width: 35px;
@@ -102,7 +101,7 @@
   background: #000;
 }
 
-.body {
+#body {
   background: #fff;
   position: absolute;
   top: 200px;
@@ -113,9 +112,9 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.hand,
-.hand:after,
-.hand:before {
+#hand,
+#hand:after,
+#hand:before {
   width: 40px;
   height: 30px;
   border-radius: 50px;
@@ -127,31 +126,31 @@
   left: -25px;
 }
 
-.hand:after,
-.hand:before {
+#hand:after,
+#hand:before {
   content: '';
   left: -5px;
   top: 11px;
 }
 
-.hand:before {
+#hand:before {
   top: 26px;
 }
 
-.hand.rgt,
-.rgt.hand:after,
-.rgt.hand:before {
+#hand.rgt,
+#rgt.hand:after,
+#rgt.hand:before {
   left: auto;
   right: -25px;
 }
 
-.hand.rgt:after,
-.hand.rgt:before {
+#hand.rgt:after,
+#hand.rgt:before {
   left: auto;
   right: -5px;
 }
 
-.foot {
+#foot {
   top: 360px;
   left: -80px;
   position: absolute;
@@ -163,7 +162,7 @@
   height: 120px;
 }
 
-.foot:after {
+#foot:after {
   content: '';
   width: 55px;
   height: 65px;
@@ -176,9 +175,9 @@
   margin: auto;
 }
 
-.foot .finger,
-.foot .finger:after,
-.foot .finger:before {
+#foot .finger,
+#foot .finger:after,
+#foot .finger:before {
   position: absolute;
   width: 25px;
   height: 35px;
@@ -188,37 +187,37 @@
   right: 5px;
 }
 
-.foot .finger:after,
-.foot .finger:before {
+#foot .finger:after,
+#foot .finger:before {
   content: '';
   right: 30px;
   width: 20px;
   top: 0;
 }
 
-.foot .finger:before {
+#foot .finger:before {
   right: 55px;
   top: 5px;
 }
 
-.foot.rgt {
+#foot.rgt {
   left: auto;
   right: -80px;
 }
 
-.foot.rgt .finger,
-.foot.rgt .finger:after,
-.foot.rgt .finger:before {
+#foot.rgt .finger,
+#foot.rgt .finger:after,
+#foot.rgt .finger:before {
   left: 5px;
   right: auto;
 }
 
-.foot.rgt .finger:after {
+#foot.rgt .finger:after {
   left: 30px;
   right: auto;
 }
 
-.foot.rgt .finger:before {
+#foot.rgt .finger:before {
   left: 55px;
   right: auto;
 }
@@ -243,7 +242,7 @@ form.up {
   transform: translateY(-180px);
 }
 
-.btn {
+#btn {
   background: #fff;
   padding: 4px;
   width: 100px;
@@ -258,26 +257,26 @@ form.up {
   margin-left: 7rem;
 }
 
-.btn:hover {
+#btn:hover {
   box-shadow: 0 0 #00fffc inset;
   color: #000;
 }
 
-.btn:focus {
+#btn:focus {
   outline: none;
 }
 
-.form-group {
+#form-group {
   position: relative;
   font-size: 15px;
   color: #666;
 }
 
-.form-group+.form-group {
+#form-group+.form-group {
   margin-top: 30px;
 }
 
-.form-group .form-label {
+#form-group .form-label {
   position: absolute;
   z-index: 1;
   left: 0;
@@ -285,7 +284,7 @@ form.up {
   transition: 0.3s;
 }
 
-.form-group .form-control {
+#form-group .form-control {
   width: 100%;
   position: relative;
   z-index: 3;
@@ -298,26 +297,26 @@ form.up {
   color: #555;
 }
 
-.form-group .form-control:invalid {
+#form-group .form-control:invalid {
   outline: none;
 }
 
-.form-group .form-control:focus,
-.form-group .form-control:valid {
+#form-group .form-control:focus,
+#form-group .form-control:valid {
   outline: none;
   box-shadow: 0 1px #00fffc;
   border-color: #00fffc;
   margin-top: 0.7rem;
 }
 
-.form-group .form-control:focus+.form-label,
-.form-group .form-control:valid+.form-label {
+#form-group .form-control:focus+.form-label,
+#form-group .form-control:valid+.form-label {
   font-size: 14px;
   color: #3c4242;
   transform: translateY(-15px);
 }
 
-.alert {
+#alert {
   position: absolute;
   color: #f00;
   font-size: 16px;
@@ -337,8 +336,8 @@ form.up {
   transition: linear 0.4s 0.6s;
 }
 
-.alert:after,
-.alert:before {
+#alert:after,
+#alert:before {
   content: '';
   position: absolute;
   width: 25px;
@@ -350,19 +349,19 @@ form.up {
   border-radius: 50%;
 }
 
-.alert:before {
+#alert:before {
   width: 15px;
   height: 15px;
   left: -35px;
   bottom: -25px;
 }
 
-.wrong-entry {
+#wrong-entry {
   -webkit-animation: wrong-log 0.3s;
   animation: wrong-log 0.3s;
 }
 
-.wrong-entry .alert {
+#wrong-entry .alert {
   opacity: 1;
   transform: scale(1, 1);
 }
@@ -441,7 +440,7 @@ form.up {
 
 }
 
-.meta-link {
+#meta-link {
   align-items: center;
   backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.05);
@@ -459,18 +458,18 @@ form.up {
   z-index: 10000;
 }
 
-.meta-link:hover {
+#meta-link:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.meta-link>i,
-.meta-link>span {
+#meta-link>i,
+#meta-link>span {
   height: 20px;
   line-height: 20px;
 }
 
-.meta-link>span {
+#meta-link>span {
   color: white;
   font-family: "Rubik", sans-serif;
   transition: color 600ms;

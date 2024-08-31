@@ -27,7 +27,7 @@ const TopNav = () => {
   };
 
   return (
-    <div className="max-w-6xl ml-60 bg-blue-900 p-4 shadow-md">
+    <div className="max-w-8xl ml-60 bg-blue-900 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <h2 className="text-xl font-bold text-white">
           {location.pathname === '/admin' ? 'DASHBOARD' : 'DASHBOARD / PAGES'}
