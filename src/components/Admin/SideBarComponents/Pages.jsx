@@ -54,7 +54,7 @@ const Pages = () => {
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="bg-gray-200 text-gray-700 rounded px-3 py-2 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="bg-gray-200 text-gray-800 rounded px-3 py-2 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -83,12 +83,12 @@ const Pages = () => {
                     </thead>
                     <tbody>
                       {filteredInfoDetails.map((item, i) => (
-                        <tr key={item.id} className="text-center transition duration-300 hover:bg-blue-50">
-                          <td className="border px-4 py-2">{i + 1}</td>
-                          <td className="border px-4 py-2">{item?.items[0].title || 'No Title'}</td>
-                          <td className="border px-4 py-2">{item.createdAt || 'No Date'}</td>
+                        <tr key={item.id} className="text-center transition duration-100 hover:bg-blue-50">
+                          <td className="border px-4 py-2 text-blue-900">{i + 1}</td>
+                          <td className="border px-4 py-2 text-gray-900">{item?.items[0].title || 'No Title'}</td>
+                          <td className="border px-4 py-2 text-gray-900">{item.createdAt || 'No Date'}</td>
                           <td className="border px-4 py-2">
-                            <span className="bg-green-200 text-green-800 px-2 py-1 rounded">
+                            <span className="bg-green-300 text-green-800 px-2 py-1 rounded">
                               Published
                             </span>
                           </td>
