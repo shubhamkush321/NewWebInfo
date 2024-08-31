@@ -56,68 +56,68 @@ const Login = () => {
 
   return (
     <div>
-      <div className="panda">
-        <div className="ear"></div>
-        <div className="face">
-          <div className="eye-shade"></div>
-          <div className="eye-white">
-            <div className="eye-ball" style={eyeSize}></div>
+      <div class="panda">
+        <div class="ear"></div>
+        <div class="face">
+          <div class="eye-shade"></div>
+          <div class="eye-white">
+            <div class="eye-ball" style={eyeSize}></div>
           </div>
-          <div className="eye-shade rgt"></div>
-          <div className="eye-white rgt">
-            <div className="eye-ball" style={eyeSize}></div>
+          <div class="eye-shade rgt"></div>
+          <div class="eye-white rgt">
+            <div class="eye-ball" style={eyeSize}></div>
           </div>
-          <div className="nose"></div>
-          <div className="mouth"></div>
+          <div class="nose"></div>
+          <div class="mouth"></div>
         </div>
-        <div className="body"></div>
-        <div className="foot">
-          <div className="finger"></div>
+        <div class="body"></div>
+        <div class="foot">
+          <div class="finger"></div>
         </div>
-        <div className="foot rgt">
-          <div className="finger"></div>
+        <div class="foot rgt">
+          <div class="finger"></div>
         </div>
       </div>
       <form
-        className={`${formClass} ${validationClass}`}
+        class={`${formClass} ${validationClass}`}
         onSubmit={handleSubmit} // Adds the handleSubmit function to form submission
       >
-        <div className="hand"></div>
-        <div className="hand rgt"></div>
-        <h1 className="text-2xl font-bold text-center mb-8 text-gray-800">
+        <div class="hand"></div>
+        <div class="hand rgt"></div>
+        <h1 class="text-2xl font-bold text-center mb-8 text-gray-800">
           Admin Login
         </h1>
-        <div className="form-group">
+        <div class="form-group">
           <input
             required
-            className="form-control"
+            class="form-control"
             onBlur={handleFocusOut}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <label className="form-label">Username</label>
+          <label class="form-label">Username</label>
         </div>
-        <div className="form-group">
+        <div class="form-group">
           <input
             id="password"
             type="password"
             required
-            className="form-control"
+            class="form-control"
             onFocus={handleFocusIn}
             onBlur={handleFocusOut}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label className="form-label">Password</label>
+          <label class="form-label">Password</label>
           {validationClass === "wrong-entry" && (
-            <p className="alert">Invalid Credentials..!!</p>
+            <p class="alert">Invalid Credentials..!!</p>
           )}
-          <button type="submit" className="btn">
+          <button type="submit" class="btn">
             Login
           </button>
         </div>
-        <div className="ml-24 mt-2">
+        <div class="ml-24 mt-2">
           <a
             href="/forgot-password"
-            className="font-semibold text-gray-800 hover:text-red-500"
+            class="font-semibold text-gray-800 hover:text-red-500"
           >
             Forgot Password?
           </a>

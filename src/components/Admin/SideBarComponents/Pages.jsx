@@ -42,7 +42,7 @@ const Pages = () => {
   );
 
   return (
-    <div className="h-full bg-blue-100 p-2">
+    <div className="bg-blue-200 p-2">
       {loading ? (
         <p>Loading...</p>
       ) : (
