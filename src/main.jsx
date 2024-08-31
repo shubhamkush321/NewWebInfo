@@ -73,7 +73,7 @@ import AmazonPostMange from "./components/Header/pages/ECommerce/AmazonPost.jsx"
 import Admin from "./components/Admin/Admin.jsx";
 import Pages from "./components/Admin/SideBarComponents/Pages.jsx";
 import Blog from "./components/Admin/SideBarComponents/Blog.jsx";
-import FAQs from "./components/Admin/SideBarComponents/FAQs.jsx";
+import FAQs from "./components/Admin/SideBarComponents/FAQ/FAQ.jsx";
 import DigitalCards from "./components/Admin/SideBarComponents/DigitalCards.jsx";
 import Testimonials from "./components/Admin/SideBarComponents/Testimonials.jsx";
 import Dashboard from "./components/Admin/SideBarComponents/Dashboard.jsx";

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import JoditEditor from 'jodit-react';
 
-const Form = ({ setFormData, formData }) => {
+const FAQs = ({ setFormData, formData }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
@@ -22,10 +22,10 @@ const Form = ({ setFormData, formData }) => {
     <div className=" mt-24 min-h-screen p-6">
       {/* Main form section */}
       <form onSubmit={handleFormSubmit} className="w-full max-w-6xl mx-auto bg-white bg-opacity-50 backdrop-blur-md p-6 shadow-lg h-full max-h-3xl">
-        <h1 className="text-2xl font-bold mb-6 text-gray-900">Edit Form</h1>
+        <h1 className="text-2xl font-bold mb-6 text-gray-900">Category</h1>
         <div className="mb-4">
           <label className="block text-xl text-gray-800 font-semibold mb-2" htmlFor="name">
-            Name
+          Question
           </label>
           <input
             id="name"
@@ -37,7 +37,7 @@ const Form = ({ setFormData, formData }) => {
         </div>
         <div className="mb-4">
           <label className="block text-xl text-gray-800 font-semibold mb-2" htmlFor="description">
-            Description
+          Answer
           </label>
           <textarea
             id="description"
@@ -115,4 +115,4 @@ const Form = ({ setFormData, formData }) => {
   );
 };
 
-export default Form;
+export default FAQs;
