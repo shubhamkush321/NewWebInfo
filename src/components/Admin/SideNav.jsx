@@ -23,8 +23,11 @@ const SideNav = () => {
 
   return (
     <div className="w-60 h-screen fixed bg-gray-900 text-white p-6 shadow-lg">
-      <Link to="/admin" className="flex items-center mb-8">
-        <div className="text-2xl font-bold">WebInfomotrix</div>
+      <Link to="/admin" className="flex items-center mb-6 relative">
+      <div class="content">
+        <h2>WebInfomotrix</h2>
+        <h2>WebInfomotrix</h2> 
+    </div>
       </Link>
       <ul className="space-y-4">
         {navItems.map(({ to, icon, label }) => (

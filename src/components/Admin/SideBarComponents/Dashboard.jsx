@@ -62,12 +62,12 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         {/* Dashboard Cards */}
         <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-          <h3 className="text-lg font-semibold mb-2">Total Sales</h3>
-          <p className="text-2xl font-bold text-gray-700">$45,000</p>
+          <h3 className="text-lg font-semibold mb-2">Total Pages</h3>
+          <p className="text-2xl font-bold text-gray-700">45</p>
         </div>
         <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
           <h3 className="text-lg font-semibold mb-2">New Orders</h3>
-          <p className="text-2xl font-bold text-gray-700">120</p>
+          <p className="text-2xl font-bold text-gray-700">20</p>
         </div>
         <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
           <h3 className="text-lg font-semibold mb-2">Revenue</h3>
