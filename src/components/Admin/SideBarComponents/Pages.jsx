@@ -4,12 +4,13 @@ import { SERVERAPI } from '../../../common/common';
 import Form from '../Form';
 import { InfoContext } from "../../context/InfoContext";
 import BackButton from "../../Admin/SideBarComponents/BackButton";
+import CircleLoader from 'react-spinners/CircleLoader';
 
 const Pages = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [confirmationModel, setConfirmationModel] = useState(false);
-  const { infoDetails, setInfoDetails } = useContext(InfoContext);
+  const {infoDetails, setInfoDetails } = useContext(InfoContext);
   const [formData, setFormData] = useState();
   const [loading, setLoading] = useState(false);
   const [EditForm, setEditForm] = useState(false);
@@ -44,7 +45,9 @@ const Pages = () => {
   return (
     <div className="bg-blue-200 p-2">
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center h-full">
+          <CircleLoader color="#00abff" />
+        </div>
       ) : (
         <>
           {!EditForm ? (
@@ -69,7 +72,12 @@ const Pages = () => {
 
               <div className="space-y-4">
                 {filteredInfoDetails.length === 0 ? (
-                  <p>No data found.</p>
+                <div className="bg-gradient-to-r from-red-100 to-red-300 border border-red-500 text-red-800 px-6 py-4 w-80 mx-auto mt-36 max-h-screen mb-96 rounded-lg shadow-lg flex flex-col items-center">
+                <p className="text-red-700 text-center font-semibold text-lg mb-6">No Data Found. Please Check the Server.</p>
+                <div className="flex items-center justify-center">
+                    <CircleLoader color="#00abff" size={50} />
+                </div>  
+               </div>
                 ) : (
                   <table className="w-full border-collapse">
                     <thead>

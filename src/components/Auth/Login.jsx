@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 import "./Login.css";
 import { SERVERAPI } from "../../common/common";
+import CircleLoader from 'react-spinners/CircleLoader'; 
 
 const Login = () => {
   const [formClass, setFormClass] = useState("");
@@ -10,6 +13,8 @@ const Login = () => {
   const [validationClass, setValidationClass] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // State for loading
+  const [isFormVisible, setIsFormVisible] = useState(true); // State for form visibility
   const navigation = useNavigate();
 
   useEffect(() => {
@@ -38,91 +43,118 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
+    setLoading(true); // Show spinner
+    setIsFormVisible(false); // Hide form
+
     try {
       const response = await axios.post(`${SERVERAPI}/api/login`, {
         username,
         password,
       });
       localStorage.setItem("token", response.data.token);
-      navigation("/admin");
+      toast.success('Welcome Admin!', { autoClose: 3000 }); // Show success message
+      setTimeout(() => {
+        navigation("/admin"); // Navigate after toast message
+      }, 2000); // Adjust timing to match toast duration
     } catch (error) {
       console.log(error);
       setValidationClass("wrong-entry");
+      setIsFormVisible(true); // Show form on error
+      setLoading(false); // Hide spinner
       setTimeout(() => {
         setValidationClass("");
-      }, 3000);
+      }, 1000);
+    } finally {
+      if (loading) {
+        setLoading(false); // Hide spinner in case of any unexpected errors
+      }
     }
   };
 
   return (
-    <div>
-      <div class="panda">
-        <div class="ear"></div>
-        <div class="face">
-          <div class="eye-shade"></div>
-          <div class="eye-white">
-            <div class="eye-ball" style={eyeSize}></div>
+    <div className="relative">
+      {isFormVisible && (
+        <div>
+          <div className="panda">
+            <div className="ear"></div>
+            <div className="face">
+              <div className="eye-shade"></div>
+              <div className="eye-white">
+                <div className="eye-ball" style={eyeSize}></div>
+              </div>
+              <div className="eye-shade rgt"></div>
+              <div className="eye-white rgt">
+                <div className="eye-ball" style={eyeSize}></div>
+              </div>
+              <div className="nose"></div>
+              <div className="mouth"></div>
+            </div>
+            <div className="body"></div>
+            <div className="foot">
+              <div className="finger"></div>
+            </div>
+            <div className="foot rgt">
+              <div className="finger"></div>
+            </div>
           </div>
-          <div class="eye-shade rgt"></div>
-          <div class="eye-white rgt">
-            <div class="eye-ball" style={eyeSize}></div>
-          </div>
-          <div class="nose"></div>
-          <div class="mouth"></div>
-        </div>
-        <div class="body"></div>
-        <div class="foot">
-          <div class="finger"></div>
-        </div>
-        <div class="foot rgt">
-          <div class="finger"></div>
-        </div>
-      </div>
-      <form
-        class={`${formClass} ${validationClass}`}
-        onSubmit={handleSubmit} // Adds the handleSubmit function to form submission
-      >
-        <div class="hand"></div>
-        <div class="hand rgt"></div>
-        <h1 class="text-2xl font-bold text-center mb-8 text-gray-800">
-          Admin Login
-        </h1>
-        <div class="form-group">
-          <input
-            required
-            class="form-control"
-            onBlur={handleFocusOut}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label class="form-label">Username</label>
-        </div>
-        <div class="form-group">
-          <input
-            id="password"
-            type="password"
-            required
-            class="form-control"
-            onFocus={handleFocusIn}
-            onBlur={handleFocusOut}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label class="form-label">Password</label>
-          {validationClass === "wrong-entry" && (
-            <p class="alert">Invalid Credentials..!!</p>
-          )}
-          <button type="submit" class="btn">
-            Login
-          </button>
-        </div>
-        <div class="ml-24 mt-2">
-          <a
-            href="/forgot-password"
-            class="font-semibold text-gray-800 hover:text-red-500"
+
+          <form
+            className={`${formClass} ${validationClass}`}
+            onSubmit={handleSubmit} // Adds the handleSubmit function to form submission
           >
-            Forgot Password?
-          </a>
+            <div className="hand"></div>
+            <div className="hand rgt"></div>
+            <h1 className="text-2xl font-bold text-center mb-8 text-gray-800">
+              Admin Login
+            </h1>
+            <div className="form-group">
+              <input
+                required
+                className="form-control"
+                onBlur={handleFocusOut}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label className="form-label">Username</label>
+            </div>
+            <div className="form-group">
+              <input
+                id="password"
+                type="password"
+                required
+                className="form-control"
+                onFocus={handleFocusIn}
+                onBlur={handleFocusOut}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label className="form-label">Password</label>
+              {validationClass === "wrong-entry" && (
+                <p className="alert">Invalid Credentials..!!</p>
+              )}
+              <button type="submit" className="btn">
+                Login
+              </button>
+            </div>
+            <div className="ml-24 mt-2">
+              <a
+                href="/forgot-password"
+                className="font-semibold text-gray-800 hover:text-red-500"
+              >
+                Forgot Password?
+              </a>
+            </div>
+          </form>
         </div>
-      </form>
+      )}
+
+      {/* Spinner with blur effect */}
+      {loading && (
+        <div className="flex justify-center items-center mt-96">
+          <CircleLoader color="#00abff" />
+        </div>
+      )}
+
+      {/* Toast container */}
+      <ToastContainer />
     </div>
   );
 };

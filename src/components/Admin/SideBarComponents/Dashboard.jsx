@@ -66,12 +66,12 @@ const Dashboard = () => {
           <p className="text-2xl font-bold text-gray-700">45</p>
         </div>
         <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-          <h3 className="text-lg font-semibold mb-2">New Orders</h3>
-          <p className="text-2xl font-bold text-gray-700">20</p>
+          <h3 className="text-lg font-semibold mb-2">User</h3>
+          <p className="text-2xl font-bold text-gray-700">1</p>
         </div>
         <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-          <h3 className="text-lg font-semibold mb-2">Revenue</h3>
-          <p className="text-2xl font-bold text-gray-700">$12,000</p>
+          <h3 className="text-lg font-semibold mb-2">Blogs & Posts</h3>
+          <p className="text-2xl font-bold text-gray-700">60</p>
         </div>
       </div>
       {/* Charts */}
