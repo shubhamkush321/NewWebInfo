@@ -5,8 +5,6 @@ import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import Home1 from "../../assets/asset 42.png";
 import Home2 from "../../assets/asset 43.jpeg";
 import Home3 from "../../assets/asset 44.png";
-import Home4 from "../../assets/asset 45.jpeg";
-import Home5 from "../../assets/asset 46.png";
 import slide1 from "../../assets/asset 1.png";
 import slide2 from "../../assets/asset 2.png";
 import slide3 from "../../assets/asset 3.png";
@@ -23,46 +21,31 @@ import Testimonials from "../Header/pages/Extra/Testimonial";
 const slides = [
   {
     img: Home1,
-    heading: "Heading 1",
+    heading: "Focused Leadership",
     paragraphs: [
-      "This is the first paragraph of text for Home 1.",
-      "This is the second paragraph of text for Home 1.",
+      "Web Infomatrix is an aced IT Outsourcing company",
+      "Providing Business Solutions by combining technical expertise",
+      "with Strong business leadership.",
     ],
     textPosition: "right",
   },
   {
     img: Home2,
-    heading: "Heading 2",
+    heading: "Define Design Build",
     paragraphs: [
-      "This is the first paragraph of text for Home 2.",
-      "This is the second paragraph of text for Home 2.",
+      "Web Infomatrix is an aced IT Outsourcing company.",
+      "Enabling businesses to get compitivity edge by building",
+      "scalable & extensible applications.",
     ],
     textPosition: "left",
   },
   {
     img: Home3,
-    heading: "Heading 3",
+    heading: "Business Outsourcing",
     paragraphs: [
-      "This is the first paragraph of text for Home 3.",
-      "This is the second paragraph of text for Home 3.",
-    ],
-    textPosition: "right",
-  },
-  {
-    img: Home4,
-    heading: "Heading 4",
-    paragraphs: [
-      "This is the first paragraph of text for Home 4.",
-      "This is the second paragraph of text for Home 4.",
-    ],
-    textPosition: "left",
-  },
-  {
-    img: Home5,
-    heading: "Heading 5",
-    paragraphs: [
-      "This is the first paragraph of text for Home 5.",
-      "This is the second paragraph of text for Home 5.",
+      "Web Infomatrix is an aced IT Outsourcing company.",
+      "We unlock bussiness value by applying proven processes methodologies",
+      "and business excellence frameworks to significant reduce costs.",
     ],
     textPosition: "right",
   },
@@ -174,13 +157,13 @@ const Home = () => {
                 slide.textPosition === "right" ? "right-6" : "left-6"
               } top-1/2 transform -translate-y-1/2 p-6 text-white z-10`}
             >
-              <h2 className="text-5xl font-bold mb-4">{slide.heading}</h2>
+              <h2 className="text-5xl font-bold mb-4 text-gray-100">{slide.heading}</h2>
               {slide.paragraphs.map((text, i) => (
-                <p key={i} className="text-lg mb-2">
+                <p key={i} className="text-lg mb-2 text-gray-100">
                   {text}
                 </p>
               ))}
-              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+              <button className="bg-blue-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
                 Learn More
               </button>
             </motion.div>
