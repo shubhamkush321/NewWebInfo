@@ -56,7 +56,7 @@ const Form = ({ setFormData, formData, handleFormSubmit }) => {
                 id="name"
                 type="text"
                 value={formData?.items[0]?.title || ""}
-                onChange={(e) => handleInputChange("title", e.target.value)}
+                // onChange={(e) => handleInputChange("title", e.target.value)}
                 className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
