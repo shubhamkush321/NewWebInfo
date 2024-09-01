@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const contentSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true 
   },
   content: {
     type: String,

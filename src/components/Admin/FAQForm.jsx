@@ -37,35 +37,22 @@ const FAQs = ({ FAQData, setFAQData }) => {
       <div className="mt-24 min-h-screen p-6">
         <form onSubmit={handleFormSubmit} className="w-full max-w-6xl mx-auto bg-white bg-opacity-50 backdrop-blur-md p-6 shadow-lg h-full max-h-3xl">
           <h1 className="text-2xl font-bold mb-6 text-gray-900">FAQ Form</h1>
-          <div className="mb-4">
-            <label className="block text-xl text-gray-800 font-semibold mb-2" htmlFor="name">
-              Question
-            </label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+        
           <div className="mb-4">
             <label className="block text-xl text-gray-800 font-semibold mb-2" htmlFor="description">
-              Answer
+              Question
             </label>
             <textarea
               id="description"
               rows="4"
               value={description}
-             
               onChange={(e) => setDescription(e.target.value)}
               className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
-
           <div className="mb-4">
             <label className="block text-xl text-gray-800 font-semibold mb-2">
-              Content
+              Answer
             </label>
             <JoditEditor
               ref={editor}
@@ -113,7 +100,7 @@ const FAQs = ({ FAQData, setFAQData }) => {
           <button
             type="button"
             className="px-3 py-1 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-            onClick={() => setFAQData(null)} // Call this to cancel editing
+            onClick={() => setFAQData(null)} 
           >
             Save & Exit
           </button>
