@@ -20,13 +20,13 @@ const Form = ({ setFormData, formData }) => {
     setContent(newContent);
   };
 
+  console.log(formData)
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setLoading(true); // Show spinner on submit
-    // Simulate form submission
     setTimeout(() => {
       setLoading(false); // Hide spinner after submission
-      // Add form submission logic here
     }, 2000); // Simulate network delay
   };
 
@@ -39,12 +39,12 @@ const Form = ({ setFormData, formData }) => {
             <h1 className="text-2xl font-bold mb-6 text-gray-900">Edit Form</h1>
             <div className="mb-4">
               <label className="block text-xl text-gray-800 font-semibold mb-2" htmlFor="name">
-                Name
+                Title
               </label>
               <input
                 id="name"
                 type="text"
-                value={name}
+                value={formData?.items[0]?.title}
                 onChange={(e) => setName(e.target.value)}
                 className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -71,7 +71,7 @@ const Form = ({ setFormData, formData }) => {
               <textarea
                 id="description"
                 rows="4"
-                value={description}
+                value={formData?.items[0]?.description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
@@ -83,7 +83,7 @@ const Form = ({ setFormData, formData }) => {
               </label>
               <JoditEditor
                 ref={editor}
-                value={content}
+                value={formData?.items[0]?.content}
                 onChange={handleContentChange}
                 config={{
                   readonly: false,
