@@ -105,7 +105,7 @@ const Form = ({ setFormData, formData, handleFormSubmit }) => {
                 ref={editor}
                 value={formData?.items[0]?.content || ""}
                 onBlur={(newContent) => handleContentChange(newContent)}
-                className="rounded-md bg-transparent text-gray-900"
+                className="rounded-md bg-transparent text-gray-900 overflow-hidden"
               />
               <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 mb-2">
                 Save
