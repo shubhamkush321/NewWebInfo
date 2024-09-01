@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import Home1 from "../../assets/asset 42.png";
 import Home2 from "../../assets/asset 43.jpeg";
@@ -15,6 +16,8 @@ import slide6 from "../../assets/asset 6.png";
 import Mobile from "../../assets/Mobile.png";
 import DigitalCards from "../Header/pages/Extra/DigitalCards";
 import HomeCard from "../Header/pages/Extra/HomeCard";
+import CountUp from "react-countup";
+import Testimonials from "../Header/pages/Extra/Testimonial";
 
 // Define content for each slide
 const slides = [
@@ -83,6 +86,23 @@ const Home = () => {
   const textControls = useAnimation();
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [initialLoad, setInitialLoad] = React.useState(true);
+
+  const { ref: ref1, inView: inView1 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const { ref: ref2, inView: inView2 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const { ref: ref3, inView: inView3 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const { ref: ref4, inView: inView4 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
 
   React.useEffect(() => {
     if (initialLoad) {
@@ -321,7 +341,7 @@ const Home = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           variants={animationVariants}
-          className="relative z-10 bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-xl p-10 shadow-xl"
+          className="relative z-10 bg-white  backdrop-filter rounded-xl p-10"
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-8">
             Expert Digital Marketing Services{" "}
@@ -372,20 +392,100 @@ const Home = () => {
         <div className="absolute inset-0 bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-xl"></div>
       </div>
 
-      {/* New Section */}
-      <motion.div
-          initial="hiddenTop"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          variants={animationVariants}
-          className="relative z-10 bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-xl p-10 shadow-xl"
-        >
+      {/* Home Card */}
       <HomeCard />
-      </motion.div>
 
+      {/* Wants To Talk */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center">
+          <motion.div
+            ref={ref1}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: inView1 ? 1 : 0, y: inView1 ? 0 : 20 }}
+            transition={{ duration: 0.5 }}
+            className="lg:w-1/2 mb-8 lg:mb-0"
+          >
+            <h2 className="text-3xl font-bold mb-4 text-center lg:text-left">
+              WANT TO TALK?
+            </h2>
+            <p className="text-lg mb-8 text-center lg:text-left">
+              Whether you have a question about feature trials, pricing, need a
+              demo or anything else related to our services, our team is ready
+              to answer all your queries. We would happily answer your questions
+              and have a detailed discussion. We also provide 24x7 customer
+              support service for our clients.
+            </p>
+            <div className="text-center lg:text-left">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Get In Touch
+              </button>
+            </div>
+          </motion.div>
+          <div className="lg:w-1/2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+              <motion.div
+                ref={ref2}
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: inView2 ? 1 : 0, y: inView2 ? 0 : 20 }}
+                transition={{ duration: 0.5 }}
+              >
+                <h3 className="text-xl font-bold mb-1">
+                  {inView2 && (
+                    <CountUp start={1} end={125} duration={2.5} separator="," />
+                  )}
+                </h3>
+                <p className="text-gray-600 text-sm">Projects done</p>
+              </motion.div>
+              <motion.div
+                ref={ref3}
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: inView3 ? 1 : 0, y: inView3 ? 0 : 20 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <h3 className="text-xl font-bold mb-1">
+                  {inView3 && (
+                    <CountUp start={1} end={359} duration={2.5} separator="," />
+                  )}
+                </h3>
+                <p className="text-gray-600 text-sm">Cups of coffee</p>
+              </motion.div>
+              <motion.div
+                ref={ref4}
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: inView4 ? 1 : 0, y: inView4 ? 0 : 20 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <h3 className="text-xl font-bold mb-1">
+                  {inView4 && (
+                    <CountUp start={1} end={55} duration={2.5} separator="," />
+                  )}
+                </h3>
+                <p className="text-gray-600 text-sm">Happy clients</p>
+              </motion.div>
+              <motion.div
+                ref={ref1}
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: inView1 ? 1 : 0, y: inView1 ? 0 : 20 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <h3 className="text-xl font-bold mb-1">
+                  {inView1 && (
+                    <CountUp start={1} end={25} duration={2.5} separator="," />
+                  )}
+                </h3>
+                <p className="text-gray-600 text-sm">Experience</p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      
+      {/* Testimonials */}
+      <Testimonials />
     </LocomotiveScrollProvider>
   );
 };
