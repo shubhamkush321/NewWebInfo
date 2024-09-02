@@ -1,45 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import {SERVERAPI} from '../../../../../common/common'; 
+import React, { useContext } from 'react';
+import { InfoContext } from "../../../../context/InfoContext";
 import Services from '../../Extra/Services';
 import ContactForm from '../../Extra/ContactForm';
 import image1 from "../../../../../assets/New folder/asset 4.jpeg";
 
 const OnlineReputation = () => {
-const[data, setData] = useState([]);
+  const { infoDetails } = useContext(InfoContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try{
-        const response = await axios.get(`${SERVERAPI}/api/online-reputation`);
-        setData(response.data[0]?.sections);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
-  console.log(data);
+  const OnlineReputation = infoDetails?.find(
+    (item) => item?.items[0].title === "Online Reputation"
+  );
+
 
   return (
-    <main className="p-48 -mt-16 bg-gray-50">
-    {data.map((section, index) => (
-      <section className="mb-8" key={index}>
-        <h1 className={`text-2xl ${index === 0 ? 'flex justify-center' : 'text-xl'} font-bold text-gray-800 mb-4`}>
-          {section.header}
+    <>
+    {OnlineReputation && (
+      <div className="lg:p-32 text-gray-800 bg-gray-100 -mt-14 justify-center">
+        <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-left ml-64">
+          {OnlineReputation?.items[0]?.title }
+          &nbsp;Repaire Services
         </h1>
-        <div
-          className={`text-lg ${index === 0 ? 'text-gray-800' : 'text-gray-700'} mb-4`}
-          dangerouslySetInnerHTML={{ __html: section.description }}
-        />
-      </section>
-    ))}
-    <div>
+        
+        <div className="mb-8">
+          <div
+            className="mb-6 text-gray-700"
+            dangerouslySetInnerHTML={{
+              __html: OnlineReputation?.items[0]?.content,
+            }}
+          /> 
+        </div>
+      </div>
+    )}
+    <div className='lg:p-44 -mt-20'>
       <Services />
       <img src={image1} alt="Online Reputation" />
       <ContactForm />
     </div>
-  </main>
+  </>
   );
 };
 

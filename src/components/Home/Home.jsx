@@ -130,7 +130,7 @@ const Home = () => {
     >
       <div
         data-scroll-container
-        className="relative overflow-hidden h-screen w-screen"
+        className="relative overflow-hidden h-screen w-screen "
       >
         {slides.map((slide, index) => (
           <motion.div
@@ -157,9 +157,9 @@ const Home = () => {
                 slide.textPosition === "right" ? "right-6" : "left-6"
               } top-1/2 transform -translate-y-1/2 p-6 text-white z-10`}
             >
-              <h2 className="text-5xl font-bold mb-4 text-gray-100">{slide.heading}</h2>
+              <h2 className="text-7xl font-bold mb-4 text-gray-200 -mt-10">{slide.heading}</h2>
               {slide.paragraphs.map((text, i) => (
-                <p key={i} className="text-lg mb-2 text-gray-100">
+                <p key={i} className="text-lg mb-2 text-gray-200">
                   {text}
                 </p>
               ))}
@@ -415,7 +415,7 @@ const Home = () => {
               >
                 <h3 className="text-xl font-bold mb-1">
                   {inView2 && (
-                    <CountUp start={1} end={125} duration={2.5} separator="," />
+                    <CountUp start={1} end={125} duration={3.5} separator="," />
                   )}
                 </h3>
                 <p className="text-gray-600 text-sm">Projects done</p>
@@ -429,7 +429,7 @@ const Home = () => {
               >
                 <h3 className="text-xl font-bold mb-1">
                   {inView3 && (
-                    <CountUp start={1} end={359} duration={2.5} separator="," />
+                    <CountUp start={1} end={359} duration={3.5} separator="," />
                   )}
                 </h3>
                 <p className="text-gray-600 text-sm">Cups of coffee</p>
@@ -443,7 +443,7 @@ const Home = () => {
               >
                 <h3 className="text-xl font-bold mb-1">
                   {inView4 && (
-                    <CountUp start={1} end={55} duration={2.5} separator="," />
+                    <CountUp start={1} end={55} duration={3.5} separator="," />
                   )}
                 </h3>
                 <p className="text-gray-600 text-sm">Happy clients</p>
@@ -457,7 +457,7 @@ const Home = () => {
               >
                 <h3 className="text-xl font-bold mb-1">
                   {inView1 && (
-                    <CountUp start={1} end={25} duration={2.5} separator="," />
+                    <CountUp start={1} end={25} duration={3.5} separator="," />
                   )}
                 </h3>
                 <p className="text-gray-600 text-sm">Experience</p>
