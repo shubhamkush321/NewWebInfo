@@ -16,16 +16,20 @@ app.use(cors({
 }));
 
 //Auth
-const authRoutes = require('./routes/Auth/authRoutes');
-const mainRoutes = require("./routes/MainRoutes");
+const authRoutes = require('./routes/Auth/authRoutes');  //login Routes
+const mainRoutes = require("./routes/MainRoutes");       //Main Routes
 app.use('/api', authRoutes);
 app.use('/api', mainRoutes);
 
 
 // Error handling middleware
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  if (err.name === 'ValidationError') {
+    return res.status(400).json({ message: 'Validation Error', error: err.message });
+  }
+  res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
 
 
