@@ -5,7 +5,7 @@ const ElectronicsCompanies = () => {
   const { infoDetails } = useContext(InfoContext);
 
   const ElectronicsCompaniesData = infoDetails?.find(
-    (item) => item?.items[0].title === "Electronics Companies"
+    (item) => item?.items[0].title === "Consumer Electronics & Accessories Marketing & Advertising"
   );
 
   return (

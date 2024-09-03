@@ -32,6 +32,7 @@ const Pages = () => {
       console.error("Error deleting item:", error);
     }
   };
+console.log(infoDetails);
 
   const handleCancelEdit = () => {
     setEditForm(false);

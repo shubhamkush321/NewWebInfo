@@ -5,7 +5,7 @@ const Educational = () => {
   const { infoDetails } = useContext(InfoContext);
 
   const EducationalData = infoDetails?.find(
-    (item) => item?.items[0].title === "Educational Institutes"
+    (item) => item?.items[0].title === "Digital Marketing For Educational Institutes"
   );
 
   return (

@@ -18,7 +18,6 @@ import image15 from "../../../../assets/asset 22.png";
 
 const DigitalCards = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   // Example image URLs and captions
   const images = [
     { img: image1, caption: "Fashion & Style" },

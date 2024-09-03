@@ -89,13 +89,7 @@ const CategoriesForm = ({ categories, setCategories }) => {
             >
               Save
             </button>
-            <button
-              type="button"
-              onClick={() => setCategories(null)} // Call this to cancel editing
-              className="px-6 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-            >
-              Cancel
-            </button>
+           
           </div>
         </form>
       </div>

@@ -5,7 +5,7 @@ const IndustriesECommerce = () => {
   const { infoDetails } = useContext(InfoContext);
 
   const IndustriesECommerceData = infoDetails?.find(
-    (item) => item?.items[0].title === "Industries Commerce"
+    (item) => item?.items[0].title === "ECommerce Website Development"
   );
 
   return (
