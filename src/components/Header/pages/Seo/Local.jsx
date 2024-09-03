@@ -1,58 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { SERVERAPI } from '../../../../common/common'; 
-import Services from '../Extra/Services';
-import ContactForm from '../Extra/ContactForm';
-import imageLocal from "../../../../assets/New folder/asset 4.jpeg";
-
+import React, { useContext } from "react";
+import { InfoContext } from "../../../context/InfoContext";
+import DigitalCards from "../Extra/DigitalCards";
+import Services from "../Extra/Services";
 
 const Local = () => {
-  const [data, setData] = useState([]);
+  const { infoDetails } = useContext(InfoContext);
 
-// Fetch data from the server
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${SERVERAPI}/api/local-content`);
-      setData(response.data || []);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-  fetchData();
-}, []);
-
+  const Local = infoDetails?.find(
+    (item) => item?.items[0].title === "Local Seo"
+  );
 
   return (
-    <div className="w-full bg-gray-50 py-12">
-      <div className="max-w-5xl mx-auto p-6 bg-gray-50 rounded-lg">
-        {data.map((item, index) => {
-          if (item.type === 'header') {
-            return React.createElement(`h${item.level}`, { key: index, className: item.className }, item.text);
-          }
-          if (item.type === 'paragraph') {
-            return (
-              <p key={index} className={item.className}>
-                {item.text}
-              </p>
-            );
-          }
-          if (item.type === 'link') {
-            return (
-              <a key={index} href={item.href} className={item.className}>
-                {item.text}
-              </a>
-            );
-          }
-          return null;
-        })}
+    <>
+      {Local && (
+        <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20 ">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center">
+            {Local?.items[0]?.title}
+            &nbsp;Services – Grow Your Local Business Online
+          </h1>
+          <hr className="border-gray-500 mb-4" />
+          <div className="mb-8">
+            <div
+              className="mb-6 text-gray-700"
+              dangerouslySetInnerHTML={{
+                __html: Local?.items[0]?.content,
+              }}
+            />
+          </div>
+        </div>
+      )}
+      <div>
+        <Services />
+        <DigitalCards />
       </div>
-      <div className='m-44 -mt-2'>
-        <Services/>
-        <img src={imageLocal} />
-        <ContactForm/>
-      </div>
-    </div>
+    </>
   );
 };
 

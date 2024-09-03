@@ -1,4 +1,4 @@
-import React, {  useContext } from "react";
+import React, { useContext } from "react";
 import { InfoContext } from "../../../context/InfoContext";
 
 const PayPer = () => {
@@ -12,18 +12,18 @@ const PayPer = () => {
     <>
       {payPerData && (
         <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20 justify-center">
-          <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-left ml-64">
-            {payPerData?.items[0]?.title }
+          <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center uppercase">
+            {payPerData?.items[0]?.title}
             &nbsp;Click Advertising Services
           </h1>
-          <hr className="border-gray-500 mb-4"/>
+          <hr className="border-gray-500 mb-4" />
           <div className="mb-8">
             <div
               className="mb-6 text-gray-700"
               dangerouslySetInnerHTML={{
                 __html: payPerData?.items[0]?.content,
               }}
-            /> 
+            />
           </div>
         </div>
       )}

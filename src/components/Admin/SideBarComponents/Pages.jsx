@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 const Pages = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [confirmationModel, setConfirmationModel] = useState(false);
   const { infoDetails, setInfoDetails } = useContext(InfoContext);
   const [formData, setFormData] = useState();
   const [loading, setLoading] = useState(false);

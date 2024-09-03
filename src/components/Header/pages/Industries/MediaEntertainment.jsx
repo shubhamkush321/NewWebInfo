@@ -1,57 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import {SERVERAPI} from '../../../../common/common'; 
+import React, { useContext } from "react";
+import { InfoContext } from "../../../context/InfoContext";
 
 const MediaEntertainment = () => {
+  const { infoDetails } = useContext(InfoContext);
 
-  const[data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${SERVERAPI}/api/media-content`);
-        console.log("Fetched data:", response.data);
-        // Directly use the response data array
-        if (Array.isArray(response.data)) {
-          setData(response.data);
-        } else {
-          console.error("Unexpected data format:", response.data);
-          setData([]);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setData([]);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const MediaEntertainmentData = infoDetails?.find(
+    (item) => item?.items[0].title === "Media Entertainment"
+  );
 
   return (
-    <div className="lg:p-44 -mt-16 bg-gray-50">
-      {data.map((item, index) => {
-        switch (item.type) {
-          case 'heading':
-            const HeadingTag = `h${item.level}`; // Dynamic heading level
-            return (
-              <HeadingTag key={index} className={item.className}>
-                {item.text}
-              </HeadingTag>
-            );
-          case 'paragraph':
-            return (
-              <p
-                key={index}
-                className={item.className}
-                dangerouslySetInnerHTML={{ __html: item.isHtml ? item.text : item.text }}
-              />
-            );
-          default:
-            return null;
-        }
-      })}
-    </div>
+    <>
+      {MediaEntertainmentData && (
+        <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20 justify-center">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center uppercase">
+            {MediaEntertainmentData?.items[0]?.title}
+            &nbsp;
+          </h1>
+          <hr className="border-gray-500 mb-4" />
+          <div className="mb-8">
+            <div
+              className="mb-6 text-gray-700"
+              dangerouslySetInnerHTML={{
+                __html: MediaEntertainmentData?.items[0]?.content,
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default MediaEntertainment;

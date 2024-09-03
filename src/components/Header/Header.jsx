@@ -437,7 +437,7 @@ export default function Header() {
                           to="/healthcare"
                           className="block p-6 py-2 hover:bg-gray-100"
                         >
-                          Healthcare
+                          Healthcare Solution
                         </Link>
                       </li>
                       <li>

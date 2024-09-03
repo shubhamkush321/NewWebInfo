@@ -1,79 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import {SERVERAPI} from '../../../../common/common'; 
-import imageLocal from "../../../../assets/New folder/asset 4.jpeg";
-import Services from '../Extra/Services';
-import ContactForm from '../Extra/ContactForm';
+import React, { useContext } from "react";
+import { InfoContext } from "../../../context/InfoContext";
 
+const ECommerceOp = () => {
+  const { infoDetails } = useContext(InfoContext);
 
-const EcommerceOp = () => {
-
-  const[data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${SERVERAPI}/api/ecommerceOp`);
-        console.log("Fetched data:", response.data);
-        // Directly use the response data array
-        if (Array.isArray(response.data)) {
-          setData(response.data);
-        } else {
-          console.error("Unexpected data format:", response.data);
-          setData([]);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setData([]);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  const ECommerceOpData = infoDetails?.find(
+    (item) => item?.items[0].title === "Ecommerce Optimization"
+  );
 
   return (
-    <div className="lg:p-44 bg-gray-50 -mt-14">
-      {data.map((item, index) => {
-        switch (item.type) {
-          case 'heading':
-            const HeadingTag = `h${item.level}`; // Dynamic heading level
-            return (
-              <HeadingTag key={index} className={item.className}>
-                {item.text}
-              </HeadingTag>
-            );
-          case 'paragraph':
-            return (
-              <p
-                key={index}
-                dangerouslySetInnerHTML={{ __html: item.text }}
-                className={item.className}
-              />
-            );
-          case 'list':
-            return (
-              <ul key={index} className={item.className}>
-                {item.items.map((listItem, listIndex) => (
-                  <li
-                    key={listIndex}
-                    dangerouslySetInnerHTML={{ __html: listItem.text }}
-                  />
-                ))}
-              </ul>
-            );
-          default:
-            return null;
-        }
-      })}
-      <div className="my-6">
-        <Services />
-        <img src={imageLocal} alt="Educational Content" className="my-6" />
-        <ContactForm />
-      </div>
-    </div>
+    <>
+      {ECommerceOpData && (
+        <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20 justify-center">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center uppercase">
+            {ECommerceOpData?.items[0]?.title}
+            &nbsp;
+          </h1>
+          <hr className="border-gray-500 mb-4" />
+          <div className="mb-8">
+            <div
+              className="mb-6 text-gray-700"
+              dangerouslySetInnerHTML={{
+                __html: ECommerceOpData?.items[0]?.content,
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
-export default EcommerceOp;
-
+export default ECommerceOp;

@@ -1,105 +1,139 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import asset1 from "../../assets/asset 0.png"; // Replace with the actual path to your image
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import Logo from "../../assets/asset 0.png";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-blue-950 border-y">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
-            <Link to="/" className="flex items-center">
-              <img src={asset1} className="h-12" alt="Logo" />
-            </Link>
+    <footer className="bg-sky-950 text-white py-10">
+      <div className="container mx-auto">
+        <div className="flex flex-wrap justify-between">
+          {/* Logo and Social Media */}
+          <div className="w-full md:w-1/4 mb-6">
+            <img src={Logo} alt="Web Infomatrix" className="h-16 mb-4" />
+            <p className="mb-2">Follow Us</p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-white">
+                <FontAwesomeIcon icon={faFacebookF} />
+              </a>
+              <a href="#" className="text-white">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+              <a href="#" className="text-white">
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </a>
+              <a href="#" className="text-white">
+                <FontAwesomeIcon icon={faYoutube} />
+              </a>
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
-                Resources
-              </h2>
-              <ul className="text-gray-500 font-medium">
-                <li className="mb-4">
-                  <Link to="/" className="hover:underline">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="hover:underline">
-                    About
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
-                Follow us
-              </h2>
-              <ul className="text-gray-500 font-medium">
-                <li className="mb-4">
-                  <a
-                    href="https://github.com/hiteshchoudhary"
-                    className="hover:underline"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <Link to="/" className="hover:underline">
-                    Discord
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
-                Legal
-              </h2>
-              <ul className="text-gray-500 font-medium">
-                <li className="mb-4">
-                  <Link to="#" className="hover:underline">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="hover:underline">
-                    Terms &amp; Conditions
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
+          {/* Office Address Delhi */}
+          <div className="w-full md:w-1/4 mb-6">
+            <h4 className="font-bold mb-2">Office Address Delhi</h4>
+            <p>B-68, 40 FT Road, Chanakya Place, Opposite C-1 Janakpuri, New Delhi -110059</p>
+            <p>Phone: 9212306116, 8860646116</p>
+            <p>Email: info@webinfomatrix.com</p>
+          </div>
+
+          {/* Office Address Hyderabad */}
+          <div className="w-full md:w-1/4 mb-6">
+            <h4 className="font-bold mb-2">Office Address Hyderabad</h4>
+            <p>301, Fortune Sapphire, Road No 3, Ram Reddy Colony, Old Bowenpally, Hyderabad, Telangana 500011</p>
+            <p>Phone: 9212306116, 8860646116</p>
+          </div>
+
+          {/* Contact */}
+          <div className="w-full md:w-1/4 mb-6">
+            <h4 className="font-bold mb-2">Contact</h4>
+            <p><FontAwesomeIcon icon={faPhone} /> +91 9212306116, +91 8860646116</p>
+            <p><FontAwesomeIcon icon={faEnvelope} /> info@webinfomatrix.com</p>
           </div>
         </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center">
-            © 2023
-            <a href="https://hiteshchoudhary.com/" className="hover:underline">
-              hiteshchoudhary
-            </a>
-            . All Rights Reserved.
-          </span>
-          <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
-            <Link to="#" className="text-gray-500 hover:text-gray-900">
-              <svg
-                className="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 8 19"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span className="sr-only">Facebook page</span>
-            </Link>
-           </div>
+
+        <hr className="my-8 border-gray-600" />
+
+        <div className="flex flex-wrap justify-between">
+          {/* Our Services */}
+          <div className="w-full md:w-1/5 mb-6">
+            <h4 className="font-bold mb-2">Our Services</h4>
+            <ul>
+              <li>Website Development</li>
+              <li>Website Designing</li>
+              <li>Affiliate Marketing</li>
+              <li>Content Marketing</li>
+              <li>Email Marketing</li>
+              <li>Search Engine Optimization (SEO)</li>
+              <li>Social Media Marketing (SMM)</li>
+              <li>Pay Per Click (PPC) Marketing</li>
+              <li>Online Reputation Management (ORM)</li>
+            </ul>
+          </div>
+
+          {/* Our Global Presence */}
+          <div className="w-full md:w-1/5 mb-6">
+            <h4 className="font-bold mb-2">Our Global Presence</h4>
+            <ul>
+              <li>United States</li>
+              <li>Australia</li>
+              <li>India</li>
+              <li>England</li>
+              <li>Canada</li>
+              <li>France</li>
+              <li>Germany</li>
+              <li>Russia</li>
+              <li>Italy</li>
+            </ul>
+          </div>
+
+          {/* Our Local Presence */}
+          <div className="w-full md:w-1/5 mb-6">
+            <h4 className="font-bold mb-2">Our Local Presence</h4>
+            <ul>
+              <li>Delhi NCR</li>
+              <li>Gurgaon</li>
+              <li>Mumbai</li>
+              <li>Pune</li>
+              <li>Chennai</li>
+              <li>Bangalore</li>
+              <li>Ludhiana</li>
+              <li>Ahmedabad</li>
+              <li>Hyderabad</li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div className="w-full md:w-1/5 mb-6">
+            <h4 className="font-bold mb-2">Resources</h4>
+            <ul>
+              <li>Sitemap</li>
+              <li>RSS Feed</li>
+              <li>SEO Blog</li>
+              <li>Top SEO Site Lists</li>
+              <li>Free Website Analysis</li>
+              <li>About Us</li>
+              <li>What We Do</li>
+              <li>Web Tools</li>
+              <li>Whois Checker</li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div className="w-full md:w-1/5 mb-6">
+            <h4 className="font-bold mb-2">Support</h4>
+            <ul>
+              <li>Career</li>
+              <li>Job Board</li>
+              <li>Digital Marketing Training</li>
+              <li>Contact</li>
+              <li>Privacy Policy</li>
+              <li>Terms & Conditions</li>
+            </ul>
+          </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

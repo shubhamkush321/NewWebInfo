@@ -152,14 +152,14 @@ const Home = () => {
                 x: slide.textPosition === "right" ? "100px" : "-100px",
               }}
               animate={textControls}
-              transition={{ duration: 2, ease: "circOut" }} // Use the circOut easing function
+              transition={{ duration: 2, ease: "circOut" }} 
               className={`absolute ${
                 slide.textPosition === "right" ? "right-6" : "left-6"
               } top-1/2 transform -translate-y-1/2 p-6 text-white z-10`}
             >
-              <h2 className="text-7xl font-bold mb-4 text-gray-200 -mt-10">{slide.heading}</h2>
+              <h2 className="text-7xl font-bold mb-4 text-gray-50 -mt-10">{slide.heading}</h2>
               {slide.paragraphs.map((text, i) => (
-                <p key={i} className="text-lg mb-2 text-gray-200">
+                <p key={i} className="text-lg mb-2 text-gray-50">
                   {text}
                 </p>
               ))}

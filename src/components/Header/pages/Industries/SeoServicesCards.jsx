@@ -1,29 +1,29 @@
-import React, { useContext } from "react";
+import React, {  useContext } from "react";
 import { InfoContext } from "../../../context/InfoContext";
 
-const ECommerceDevelopment = () => {
+const SeoHospitalCards = () => {
   const { infoDetails } = useContext(InfoContext);
 
-  const ECommerceDevelopmentData = infoDetails?.find(
-    (item) => item?.items[0].title === "ECommerce Development"
+  const SeoHospitalCard = infoDetails?.find(
+    (item) => item?.items[0].title === "Seo Hospital Cards"
   );
 
   return (
     <>
-      {ECommerceDevelopmentData && (
+      {SeoHospitalCard && (
         <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20 justify-center">
           <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center uppercase">
-            {ECommerceDevelopmentData?.items[0]?.title}
-            &nbsp;Solution
+            {SeoHospitalCard?.items[0]?.title }
+            &nbsp;
           </h1>
-          <hr className="border-gray-500 mb-4" />
+          <hr className="border-gray-500 mb-4"/>
           <div className="mb-8">
             <div
               className="mb-6 text-gray-700"
               dangerouslySetInnerHTML={{
-                __html: ECommerceDevelopmentData?.items[0]?.content,
+                __html: SeoHospitalCard?.items[0]?.content,
               }}
-            />
+            /> 
           </div>
         </div>
       )}
@@ -31,4 +31,4 @@ const ECommerceDevelopment = () => {
   );
 };
 
-export default ECommerceDevelopment;
+export default SeoHospitalCards;

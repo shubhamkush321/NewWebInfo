@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import { InfoContext } from "../../../context/InfoContext";
-import Image1 from '../../../../assets/New folder/asset 1.jpeg';
-import Image2 from '../../../../assets/New folder/asset 2.jpeg';
-import Image3 from '../../../../assets/New folder/asset 3.jpeg';
+import Image1 from "../../../../assets/New folder/asset 1.jpeg";
+import Image2 from "../../../../assets/New folder/asset 2.jpeg";
+import Image3 from "../../../../assets/New folder/asset 3.jpeg";
 import DigitalCards from "../Extra/DigitalCards";
 import SeoCards from "../Extra/SeoCards";
 import Local from "../../../../assets/New folder/asset 4.jpeg";
@@ -36,7 +36,7 @@ const SearchEngine = () => {
             src={image}
             alt={`Slide ${index + 1}`}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
@@ -61,11 +61,10 @@ const SearchEngine = () => {
       )}
 
       <div>
-        
-      <img src={Local} alt="" className='-mt-32'/>
-         <div className='lg:p-44 -mt-32'>
-           <hr className='border-gray-500 mt-10'/>
-           <SeoCards />
+        <img src={Local} alt="" className="-mt-32" />
+        <div className="lg:p-44 -mt-32">
+          <hr className="border-gray-500 mt-10" />
+          <SeoCards />
         </div>
         <DigitalCards />
       </div>

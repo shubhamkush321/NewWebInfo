@@ -1,87 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { SERVERAPI } from '../../../../common/common'; 
-import Services from '../Extra/Services';
-import ContactForm from '../Extra/ContactForm';
+import React, { useContext } from "react";
+import { InfoContext } from "../../../context/InfoContext";
+import DigitalCards from "../Extra/DigitalCards";
+import Services from "../Extra/Services";
 
-// Function to format text with bold and links
-const formatText = (text, bold = [], links = []) => {
-  let formattedText = text;
+const EnterPrise = () => {
+  const { infoDetails } = useContext(InfoContext);
 
-  // Add bold formatting
-  bold.forEach((boldText) => {
-    const boldTag = `<b>${boldText}</b>`;
-    formattedText = formattedText.replace(new RegExp(`(${boldText})`, 'g'), boldTag);
-  });
+  const EnterPrise = infoDetails?.find(
+    (item) => item?.items[0].title === "Enter Prise"
+  );
 
-  // Add links
-  links.forEach((link) => {
-    const linkTag = `<a href="${link.href}" class="text-blue-600">${link.text}</a>`;
-    formattedText = formattedText.replace(new RegExp(`(${link.text})`, 'g'), linkTag);
-  });
-
-  return formattedText;
-};
-
-const Enterprise = () => {
-  const [data, setData] = useState([]);
-
-  // Fetch data from the server
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${SERVERAPI}/api/enterPriceContent`);
-        setData(response.data || []);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, []);
-  
   return (
-    <div className="w-full bg-gray-50 py-12">
-      <div className="max-w-5xl mx-auto p-6 bg-gray-50 rounded-lg">
-        {data.map((item, index) => {
-          if (item.type === 'header') {
-            return (
-              <h1 key={index} className={item.className}>
-                {item.text}
-              </h1>
-            );
-          }
-
-          if (item.type === 'paragraph') {
-            return (
-              <p
-                key={index}
-                className={item.className}
-                dangerouslySetInnerHTML={{ __html: formatText(item.text, item.bold || [], item.links || []) }}
-              />
-            );
-          }
-
-          if (item.type === 'list') {
-            return (
-              <ul key={index} className="list-disc pl-5">
-                {item.items.map((listItem, itemIndex) => (
-                  <li
-                    key={itemIndex}
-                    className={listItem.className}
-                    dangerouslySetInnerHTML={{ __html: formatText(listItem.text, listItem.bold || [], listItem.links || []) }}
-                  />
-                ))}
-              </ul>
-            );
-          }
-
-          return null;
-        })}
+    <>
+      {EnterPrise && (
+        <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20 ">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center uppercase">
+            {EnterPrise?.items[0]?.title}
+            &nbsp;SEO Services & Solutions Company
+          </h1>
+          <hr className="border-gray-500 mb-4" />
+          <div className="mb-8">
+            <div
+              className="mb-6 text-gray-700"
+              dangerouslySetInnerHTML={{
+                __html: EnterPrise?.items[0]?.content,
+              }}
+            />
+          </div>
+        </div>
+      )}
+      <div>
         <Services />
-        <ContactForm />
+        <DigitalCards />
       </div>
-    </div>
+    </>
   );
 };
 
-export default Enterprise;
+export default EnterPrise;

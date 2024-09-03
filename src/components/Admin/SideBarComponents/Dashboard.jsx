@@ -1,7 +1,8 @@
+// src/components/Admin/SideBarComponents/Dashboard.jsx
 import React from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
-
+ 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
@@ -25,7 +26,7 @@ const lineOptions = {
     legend: { position: 'top' },
     tooltip: {
       callbacks: {
-        label: ({ dataset, raw }) => `${dataset.label}: ${raw}`,
+        label: ({ dataset, raw }) => `${dataset.label}: $${raw.toLocaleString()}`,
       },
     },
   },
@@ -50,7 +51,7 @@ const barOptions = {
     legend: { position: 'top' },
     tooltip: {
       callbacks: {
-        label: ({ dataset, raw }) => `${dataset.label}: ${raw}`,
+        label: ({ dataset, raw }) => `${dataset.label}: $${raw.toLocaleString()}`,
       },
     },
   },
@@ -58,33 +59,35 @@ const barOptions = {
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col flex-1 p-4 overflow-y-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        {/* Dashboard Cards */}
-        <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-          <h3 className="text-lg font-semibold mb-2">Total Pages</h3>
-          <p className="text-2xl font-bold text-gray-700">45</p>
+    <div className="relative flex flex-col flex-1 p-6 bg-gray-100 min-h-screen">
+      
+
+      {/* Dashboard Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 relative z-10">
+        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Total Pages</h3>
+          <p className="text-3xl font-bold text-gray-600">45</p>
         </div>
-        <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-          <h3 className="text-lg font-semibold mb-2">User</h3>
-          <p className="text-2xl font-bold text-gray-700">1</p>
+        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Users</h3>
+          <p className="text-3xl font-bold text-gray-600">1</p>
         </div>
-        <div className="bg-white shadow-md shadow-blue-600 rounded-lg p-4 flex flex-col items-center">
-          <h3 className="text-lg font-semibold mb-2">Blogs & Posts</h3>
-          <p className="text-2xl font-bold text-gray-700">60</p>
+        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Blogs & Posts</h3>
+          <p className="text-3xl font-bold text-gray-600">60</p>
         </div>
       </div>
       {/* Charts */}
-      <div className="flex gap-4">
-        <div className="bg-white shadow-md rounded-lg p-4 flex-1">
-          <h3 className="text-lg font-semibold mb-2">Sales Overview</h3>
-          <div className="h-64"> {/* Adjust the height here */}
+      <div className="flex flex-col lg:flex-row gap-6 relative z-10">
+        <div className="bg-white shadow-lg rounded-lg p-6 flex-1">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Sales Overview</h3>
+          <div className="h-64">
             <Line data={lineData} options={lineOptions} />
           </div>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-4 flex-1">
-          <h3 className="text-lg font-semibold mb-2">Expenses Overview</h3>
-          <div className="h-64"> {/* Adjust the height here */}
+        <div className="bg-white shadow-lg rounded-lg p-6 flex-1">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Expenses Overview</h3>
+          <div className="h-64">
             <Bar data={barData} options={barOptions} />
           </div>
         </div>

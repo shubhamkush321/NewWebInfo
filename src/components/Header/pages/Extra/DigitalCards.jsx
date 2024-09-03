@@ -47,7 +47,7 @@ const DigitalCards = () => {
       setCurrentImageIndex(prevIndex =>
         prevIndex === maxIndex ? 0 : prevIndex + imagesToShow
       );
-    }, 3000); // Change image every 3 seconds
+    }, 3000); 
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, [maxIndex]);
