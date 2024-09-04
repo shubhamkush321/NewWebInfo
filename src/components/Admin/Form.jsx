@@ -35,6 +35,11 @@ const Form = ({ setFormData, formData, handleFormSubmit }) => {
     handleInputChange("content", value);
   };
 
+  const handleAddFAQ = () => {
+    
+    console.log("Add FAQ clicked!");
+  };
+
   return (
     <div className="relative">
       <div className="flex">
@@ -80,22 +85,36 @@ const Form = ({ setFormData, formData, handleFormSubmit }) => {
             </div>
 
             <div className="mb-4">
-              <label
-                className="block text-xl text-gray-800 font-semibold mb-2"
-                htmlFor="description"
-              >
-                Description
-              </label>
-              <textarea
-                id="description"
-                rows="4"
-                value={formData?.items[0]?.description || ""}
-                onChange={(e) =>
-                  handleInputChange("description", e.target.value)
-                }
-                className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ></textarea>
-            </div>
+      <label
+        className="block text-xl text-gray-800 font-semibold mb-2"
+        htmlFor="faq"
+      >
+        FAQ
+      </label>
+      
+      <textarea
+        id="faq"
+        rows="4"
+        value={formData?.items[0]?.description || ""}
+        onChange={(e) =>
+          handleInputChange("description", e.target.value)
+        }
+        className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+      ></textarea>
+      <button
+        onClick={handleAddFAQ}
+        className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Add FAQ
+      </button>
+      &nbsp;
+      <button
+      
+        className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Edit FAQ
+      </button>
+    </div>
 
             <div className="mb-4">
               <label className="block text-xl text-gray-800 font-semibold mb-2">

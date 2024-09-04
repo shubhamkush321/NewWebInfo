@@ -63,9 +63,7 @@ const Home = () => {
   const textControls = useAnimation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [initialLoad, setInitialLoad] = useState(true);
-
-  const slideInterval = 5000; // Slide interval duration
-
+  const slideInterval = 5000; 
   const handleSlideChange = () => {
     controls.start("exit").then(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -86,7 +84,6 @@ const Home = () => {
         });
       });
   };
-
   useEffect(() => {
     if (initialLoad) {
       setTimeout(() => {
@@ -102,7 +99,6 @@ const Home = () => {
       return () => clearInterval(interval);
     }
   }, [initialLoad, controls, textControls]);
-
   return (
     <LocomotiveScrollProvider options={{ smooth: true }} watch={[]}>
       <div data-scroll-container className="relative overflow-hidden h-screen w-screen">
@@ -144,7 +140,6 @@ const Home = () => {
           </motion.div>
         ))}
       </div>
-
       {HomePageTitle && (
         <div className="lg:p-44 text-gray-800 bg-gray-100 -mt-20">
           <h1 className="text-3xl font-bold mb-6 text-gray-800 lg:text-center uppercase">
