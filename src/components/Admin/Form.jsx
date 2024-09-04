@@ -193,24 +193,7 @@ const Form = ({ setFormData, formData, handleFormSubmit }) => {
             </select>
           </div>
 
-          <div className="p-8 bg-white bg-opacity-50 backdrop-blur-md shadow-lg rounded-lg">
-            <label
-              className="block text-xl text-gray-700 font-semibold mb-2"
-              htmlFor="template"
-            >
-              Template
-            </label>
-            <hr className="border-gray-500 mb-4" />
-            <select
-              id="template"
-              value={template}
-              onChange={(e) => setTemplate(e.target.value)}
-              className="relative w-full px-4 py-2 border border-blue-300 bg-white rounded-md text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="default">Full width</option>
-              <option value="custom">HomePage</option>
-            </select>
-          </div>
+       
 
           <div className="p-8 bg-white bg-opacity-50 backdrop-blur-md shadow-lg rounded-lg">
             <label

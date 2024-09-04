@@ -60,7 +60,7 @@ const Categories = () => {
   return (
     <div className="bg-blue-200 p-2">
       {loading ? (
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full mt-36">
           <CircleLoader color="#00abff" />
         </div>
       ) : (

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { SERVERAPI } from "../../../common/common";
 import Form from "../Form";
@@ -10,10 +10,26 @@ import { toast } from "react-toastify";
 const Pages = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { infoDetails, setInfoDetails } = useContext(InfoContext);
+  const {infoDetails, setInfoDetails } = useContext(InfoContext);
   const [formData, setFormData] = useState();
   const [loading, setLoading] = useState(false);
   const [EditForm, setEditForm] = useState(false);
+  const [Home, setHomeData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${SERVERAPI}/api/homes`);
+        setHomeData(response.data);
+        console.log(response);
+        
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(Home);
 
   const handleSearch = () => {
     console.log("Searching for:", searchTerm);
@@ -32,6 +48,8 @@ const Pages = () => {
       console.error("Error deleting item:", error);
     }
   };
+
+  
 console.log(infoDetails);
 
   const handleCancelEdit = () => {
@@ -42,9 +60,8 @@ console.log(infoDetails);
     e.preventDefault();
     try {
       const payload = {
-        items: [formData], // Wrap formData in an array
+        items: [formData], 
       };
-  
       await axios.post(`${SERVERAPI}/api/items`, payload);
       
       const updatedData = infoDetails?.map((item) => {
