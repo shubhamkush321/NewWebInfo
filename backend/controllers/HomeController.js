@@ -1,83 +1,36 @@
-const Home = require('../models/HomeModel'); 
+const Home = require('../models/HomeModel');
 
 // Create a new Home document
 exports.createHome = async (req, res) => {
   try {
+    // Destructure title and content from the request body
     const { title, content } = req.body;
 
+    // Create a new instance of the Home model
     const newHome = new Home({
       title,
       content
     });
 
+    // Save the new Home document to the database
     const savedHome = await newHome.save();
+
+    // Send a success response with the saved document
     res.status(201).json(savedHome);
   } catch (error) {
     console.error('Error creating home:', error);
+    // Send an error response in case of failure
     res.status(500).json({ message: 'Error creating home', error });
   }
 };
 
-// Get all Home documents
+
 exports.getAllHomes = async (req, res) => {
   try {
-    const homes = await Home.find();
-    res.status(200).json(homes);
+    const homes = await Home.find(); // Fetch all documents from the Home collection
+    res.status(200).json(homes); // Respond with the retrieved documents
   } catch (error) {
+    console.error('Error fetching homes:', error);
     res.status(500).json({ message: 'Error fetching homes', error });
-  }
-};
-
-// Get a specific Home document by ID
-exports.getHomeById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const home = await Home.findById(id);
-
-    if (!home) {
-      return res.status(404).json({ message: 'Home not found' });
-    }
-
-    res.status(200).json(home);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching home', error });
-  }
-};
-
-// Update a specific Home document by ID
-exports.updateHomeById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { title, content } = req.body;
-
-    const updatedHome = await Home.findByIdAndUpdate(
-      id,
-      { title, content },
-      { new: true, runValidators: true }
-    );
-
-    if (!updatedHome) {
-      return res.status(404).json({ message: 'Home not found' });
-    }
-
-    res.status(200).json(updatedHome);
-  } catch (error) {
-    res.status(500).json({ message: 'Error updating home', error });
-  }
-};
-
-// Delete a specific Home document by ID
-exports.deleteHomeById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deletedHome = await Home.findByIdAndDelete(id);
-
-    if (!deletedHome) {
-      return res.status(404).json({ message: 'Home not found' });
-    }
-
-    res.status(200).json({ message: 'Home deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error deleting home', error });
   }
 };
