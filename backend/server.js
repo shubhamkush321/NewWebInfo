@@ -18,9 +18,10 @@ app.use(cors({
 //Auth
 const authRoutes = require('./routes/Auth/authRoutes');  //login Routes
 const mainRoutes = require("./routes/MainRoutes");       //Main Routes
+const cardRoutes = require("./routes/CardsRoutes");     //Card Routes
 app.use('/api', authRoutes);
 app.use('/api', mainRoutes);
-
+app.use('/api', cardRoutes);
 
 // Error handling middleware
 // Error handling middleware
