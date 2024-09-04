@@ -170,7 +170,6 @@ const Home = () => {
           </motion.div>
         ))}
       </div>
-
       <div className="container mx-auto px-4 py-16 text-center">
         <motion.div
           initial="hiddenTop"
